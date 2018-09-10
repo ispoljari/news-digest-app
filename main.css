@@ -14,17 +14,23 @@ header {
   height: inherit;
 }
 
-.heading-container {
+.heading-outer-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  position: absolute;
+}
+
+.heading-inner-container {
+  position: relative;
+  bottom: 200px;
 }
 
 h1 {
-  font-size: calc(32px + (60 - 32) * ((100vw - 320px) / (1100 - 320)));	
+  font-size: calc(32px + (80 - 32) * ((100vw - 320px) / (1100 - 320)));	
 }
 
-@media screen and (max-width: 310px) {
+@media screen and (max-width: 320px) {
 	.h1 {
 		font-size: 32px;
 	}
@@ -32,6 +38,6 @@ h1 {
 
 @media screen and (min-width: 1100px) {
 	.h1 {
-		font-size: 60px;
+		font-size: 80px;
 	}
 }
