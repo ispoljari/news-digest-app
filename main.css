@@ -4,10 +4,24 @@ body {
   color: white;
 }
 
-header {
-  height: 100vh;
+.content {
+  overflow: auto;
+  position: relative;
+}
+
+.content:before {
+  content: "";
+  position: fixed;
+  left: -5%;
+  top: -5%;
+  right: 0;
+  z-index: -1;
+
+  display: block;
   background: url(header_background.jpg) #7c939e;
   background-size: cover;
+  height: 110vh;
+  filter: blur(6px);
 }
 
 .stretch-height {
@@ -20,8 +34,7 @@ header {
 }
 
 .heading-inner-container {
-  position: relative;
-  bottom: 200px;
+  margin-top: 150px;
 }
 
 h1 {
