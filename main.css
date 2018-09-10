@@ -30,7 +30,7 @@ body {
   background: url(header_background.jpg) #7c939e;
   background-size: cover;
   height: 110vh;
-  animation: 1s 1s 1 ease-in backgroundBlurEffect;
+  animation: 2s 1s 1 ease-in backgroundBlurEffect;
   animation-fill-mode: forwards;
 }
 
@@ -62,7 +62,7 @@ body {
   }
 }
 
-@keyframes visibility {
+@keyframes heading-visibility {
   from {
     opacity: 1;
   }
@@ -90,18 +90,66 @@ body {
 
 .animate-typing-h1 {
   animation: 
-    typing 1s 2.5s steps(40),
-    blink-caret 0.0909s 2.5s step-end 11,
-    visibility 1s 2.5s 1 ease-in;
+    typing 1s 1.5s steps(40),
+    blink-caret 0.0909s 1.5s step-end 11,
+    heading-visibility 1s 1.5s 1 ease-in;
   animation-fill-mode: forwards;
 }
 
 .animate-typing-h2 {
   animation: 
-    typing 1s 3.5s steps(40),
-    blink-caret 0.0909s 3.5s step-end 11,
-    visibility 1s 3.5s 1 ease-in;
+    typing 1s 2.5s steps(40),
+    blink-caret 0.0909s 2.5s step-end 11,
+    heading-visibility 1s 2.5s 1 ease-in;
   animation-fill-mode: forwards;
+}
+
+.navigation {
+  position: fixed;
+  right: 100px;
+  top: 50%;
+}
+
+@keyframes navigation-visibility {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.navigation ul {
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  animation: 1s 3.5s 1 ease-in navigation-visibility;
+  animation-fill-mode: forwards; 
+}
+
+.navigation ul li {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
+}
+
+.navigation ul li:last-child {
+  margin-top: 20px;
+}
+
+.navigation ul li:hover {
+  cursor: pointer;
+  background-color: #F8F8FF;
+  width: 18px;
+  height: 18px;
+}
+
+.navigation ul li a {
+  color: #F8F8FF;
+  text-decoration: none;
 }
 
 h1 {
@@ -111,7 +159,7 @@ h1 {
 }
 
 h2 {
-  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / (1100 - 320)));
+  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / (1050 - 320)));
 }
 
 @media screen and (max-width: 320px) {
@@ -124,7 +172,7 @@ h2 {
 	}
 }
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1050px) {
 	h1 {
 		font-size: 100px;
   }
@@ -136,11 +184,5 @@ h2 {
   .heading-outer-container {
     max-width: 620px;
     text-align: initial;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .heading-outer-container {
-    text-align: center;
   }
 }
