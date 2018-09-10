@@ -9,6 +9,16 @@ body {
   position: relative;
 }
 
+@keyframes backgroundBlurEffect {
+  0% {
+    filter: blur(0px);
+  }
+
+  100% {
+    filter: blur(6px);
+  }
+}
+
 .content:before {
   content: "";
   position: fixed;
@@ -21,7 +31,8 @@ body {
   background: url(header_background.jpg) #7c939e;
   background-size: cover;
   height: 110vh;
-  filter: blur(6px);
+  animation: 2s 1s 1 ease-in backgroundBlurEffect;
+  animation-fill-mode: forwards;
 }
 
 .stretch-height {
