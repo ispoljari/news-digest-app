@@ -30,7 +30,7 @@ body {
   background: url(header_background.jpg) #7c939e;
   background-size: cover;
   height: 110vh;
-  animation: 2s 1s 1 ease-in backgroundBlurEffect;
+  animation: 1s 1s 1 ease-in backgroundBlurEffect;
   animation-fill-mode: forwards;
 }
 
@@ -90,17 +90,17 @@ body {
 
 .animate-typing-h1 {
   animation: 
-    typing 2s 3.5s steps(40),
-    blink-caret 0.182s 3.5s step-end 11,
-    visibility 2s 3.5s 1 ease-in;
+    typing 1s 2.5s steps(40),
+    blink-caret 0.0909s 2.5s step-end 11,
+    visibility 1s 2.5s 1 ease-in;
   animation-fill-mode: forwards;
 }
 
 .animate-typing-h2 {
   animation: 
-    typing 2s 5.5s steps(40),
-    blink-caret 0.182s 5.5s step-end 11,
-    visibility 2s 5.5s 1 ease-in;
+    typing 1s 3.5s steps(40),
+    blink-caret 0.0909s 3.5s step-end 11,
+    visibility 1s 3.5s 1 ease-in;
   animation-fill-mode: forwards;
 }
 
