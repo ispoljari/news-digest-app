@@ -8,3 +8,17 @@ header {
   background: url(header_background.png) #7c939e;
   background-size: cover;
 }
+
+.strech-height {
+  height: inherit;
+}
+
+.heading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
