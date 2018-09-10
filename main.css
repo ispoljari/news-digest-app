@@ -2,3 +2,9 @@ body {
   padding: 10px;
   font: 100%/1.3 'Open sans', sans-serif;
 }
+
+header {
+  height: 100vh;
+  background: url(header_background.png) #7c939e;
+  background-size: cover;
+}
