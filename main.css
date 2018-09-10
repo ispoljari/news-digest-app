@@ -10,11 +10,10 @@ body {
 }
 
 @keyframes backgroundBlurEffect {
-  0% {
+  from {
     filter: blur(0px);
   }
-
-  100% {
+  to {
     filter: blur(6px);
   }
 }
@@ -40,21 +39,79 @@ body {
 }
 
 .heading-outer-container {
-  display: flex;
-  align-items: center;
+  max-width: 100%;
+  text-align: center;
 }
 
-.heading-inner-container {
-  margin-top: 150px;
+.h1-inner-container {
+  margin-top: 200px;
+  display: inline-block;
+}
+
+.h2-inner-container {
+  display: inline-block;
+  max-width: 92%;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes visibility {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}
+
+.typography-style {
+  opacity: 0;
+  overflow: hidden;
+  border-right: 0.15em solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+}
+
+.animate-typing-h1 {
+  animation: 
+    typing 2s 3.5s steps(40),
+    blink-caret 0.182s 3.5s step-end 11,
+    visibility 2s 3.5s 1 ease-in;
+  animation-fill-mode: forwards;
+}
+
+.animate-typing-h2 {
+  animation: 
+    typing 2s 5.5s steps(40),
+    blink-caret 0.182s 5.5s step-end 11,
+    visibility 2s 5.5s 1 ease-in;
+  animation-fill-mode: forwards;
 }
 
 h1 {
   font-size: calc(40px + (100 - 40) * ((100vw - 320px) / (1100 - 320)));
+  margin-right: 0px;
   margin-bottom: 0px;
 }
 
 h2 {
-  font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1100 - 320)));
+  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / (1100 - 320)));
 }
 
 @media screen and (max-width: 320px) {
@@ -63,7 +120,7 @@ h2 {
   }
   
   h2 {
-		font-size: 20px;
+		font-size: 18px;
 	}
 }
 
@@ -74,5 +131,16 @@ h2 {
   
   h2 {
 		font-size: 32px;
-	}
+  }
+  
+  .heading-outer-container {
+    max-width: 620px;
+    text-align: initial;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .heading-outer-container {
+    text-align: center;
+  }
 }
