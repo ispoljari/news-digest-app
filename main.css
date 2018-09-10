@@ -5,7 +5,7 @@ body {
 
 header {
   height: 100vh;
-  background: url(header_background.png) #7c939e;
+  background: url(header_background.jpg) #7c939e;
   background-size: cover;
 }
 
@@ -20,5 +20,17 @@ header {
 }
 
 h1 {
-  text-align: center;
+  font-size: calc(32px + (60 - 32) * ((100vw - 320px) / (1100 - 320)));	
+}
+
+@media screen and (max-width: 310px) {
+	.h1 {
+		font-size: 32px;
+	}
+}
+
+@media screen and (min-width: 1100px) {
+	.h1 {
+		font-size: 60px;
+	}
 }
