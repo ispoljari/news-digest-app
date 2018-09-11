@@ -4,6 +4,8 @@ body {
   color: #F8F8FF;
 }
 
+/* Background img layout, style and animation */
+
 .content {
   overflow: auto;
   position: relative;
@@ -84,6 +86,8 @@ body {
 .stretch-height {
   height: inherit;
 }
+
+/* H1 and H2 layout, styling and animation */
 
 .heading-outer-container {
   max-width: 100%;
@@ -193,10 +197,12 @@ body {
           animation-fill-mode: forwards;
 }
 
+/* Large screen navigation; styles and animations */
+
 .navigation {
   position: fixed;
-  right: 100px;
-  top: 50%;
+  right: 40px;
+  top: 50px;
 }
 
 .large-screen-nav {
@@ -327,6 +333,70 @@ body {
           transform: rotateY(0deg);  
 }
 
+/* Small screens (hamburger icon) navigation; styles and animation*/
+
+.menuToggle {
+  display: none;
+  z-index: 1;
+  user-select: none;
+  display: block;
+  width: 55px;
+  height: 30px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.js-small-screen-nav {
+  display: none;
+}
+
+.menuToggle span {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 9px;
+  width: 100%;
+  background: #F8F8FF;
+  border-radius: 9px;
+  opacity: 1;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.menuToggle span:nth-child(1) {
+  top: 0px;
+}
+
+.menuToggle span:nth-child(2) {
+  top: 18px;
+}
+
+.menuToggle span:nth-child(3) {
+  top: 36px;
+}
+
+.menuToggle.open span:nth-child(1) {
+  top: 18px;
+  transform: rotate(135deg);
+}
+
+.menuToggle.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.menuToggle.open span:nth-child(3) {
+  top: 18px;
+  transform: rotate(-135deg);
+}
+
+.focused {
+  outline: 3px solid lightblue;
+}
+
+/* Media Queries */
+
 h1 {
   font-size: calc(40px + (100 - 40) * ((100vw - 320px) / 780));
   margin-right: 0px;
@@ -364,5 +434,15 @@ h2 {
 
   .large-screen-nav {
     display: block;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+
+  .navigation {
+    position: fixed;
+    right: 100px;
+    top: 50%;
   }
 }
