@@ -97,6 +97,7 @@ a {
   max-width: 100%;
   text-align: center;
   margin-top: 150px;
+  margin-left: -5px;
   padding: 0 10px;
 }
 
@@ -106,7 +107,9 @@ a {
 
 .h2-inner-container {
   display: inline-block;
-  max-width: 95%;
+  max-width: 100%;
+  position: relative;
+  right: 0.1em;
 }
 
 @-webkit-keyframes typing {
@@ -206,7 +209,7 @@ a {
 .navigation {
   position: fixed;
   z-index: 2;
-  right: 30px;
+  right: 16px;
   top: 16px;
 }
 
@@ -485,6 +488,10 @@ h2 {
     margin-top: 200px;
     max-width: 620px;
     text-align: initial;
+  }
+
+  .h2-inner-container {
+    position: static;
   }
 
   .large-screen-nav {
