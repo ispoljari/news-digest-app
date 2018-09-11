@@ -163,6 +163,7 @@ body {
 }
 
 .animate-typing-h1 {
+  -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
   -webkit-animation: 
     typing 1s 1.5s steps(40),
@@ -177,6 +178,7 @@ body {
 }
 
 .animate-typing-h2 {
+  -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
   -webkit-animation: 
     typing 1s 2.5s steps(40),
