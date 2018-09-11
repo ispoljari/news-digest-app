@@ -2,7 +2,6 @@ function startApp() {
   fadeInHamburgerIcon();
   // setFocusOnSelect();
   toggleHamburgerIconListen();
-  showOnAnimationStart(); // prevent flickering before animation start
 }
 
 function fadeInHamburgerIcon() {
@@ -39,16 +38,6 @@ function changeBurgerIconColor() {
 
 function slideDownTheMenuStrip() {
   $('.js-menu').toggleClass('slideMenuDown');
-}
-
-function showOnAnimationStart() {
-  setTimeout(function() {
-    $('.js-h1').show();
-  }, 200);
-
-  setTimeout(function() {
-    $('.js-h2').show();
-  }, 200);
 }
 
 $(startApp);
