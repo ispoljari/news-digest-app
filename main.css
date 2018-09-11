@@ -175,6 +175,7 @@ a {
 }
 
 .animate-typing-h1 {
+  display: none;
   -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
   -webkit-animation: 
@@ -190,6 +191,7 @@ a {
 }
 
 .animate-typing-h2 {
+  display: none;
   -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
   -webkit-animation: 
