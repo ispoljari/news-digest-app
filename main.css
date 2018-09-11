@@ -9,23 +9,51 @@ body {
   position: relative;
 }
 
-@keyframes backgroundBlurEffect {
+@-webkit-keyframes backgroundBlurEffect {
   from {
-    filter: blur(0px);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
   }
   to {
-    filter: blur(6px);
+    -webkit-filter: blur(6px);
+            filter: blur(6px);
+  }
+}
+
+@keyframes backgroundBlurEffect {
+  from {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+  to {
+    -webkit-filter: blur(6px);
+            filter: blur(6px);
+  }
+}
+
+@-webkit-keyframes fade-slide-down {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-4em);
+            transform: translateY(-4em);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
   }
 }
 
 @keyframes fade-slide-down {
   from {
     opacity: 0;
-    transform: translateY(-4em);
+    -webkit-transform: translateY(-4em);
+            transform: translateY(-4em);
   }
   to {
     opacity: 1;
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 }
 
@@ -39,10 +67,15 @@ body {
 
   display: block;
   height: 110vh;
-  animation: 
+  -webkit-animation: 
   fade-slide-down 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
   2s 1.5s 1 ease-in backgroundBlurEffect;
-  animation-fill-mode: forwards;
+          animation: 
+  fade-slide-down 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
+  2s 1.5s 1 ease-in backgroundBlurEffect;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.8))), url(header_background.jpg) no-repeat bottom;
   background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8)), url(header_background.jpg) no-repeat bottom;
   background-size: cover;
   opacity: 0;
@@ -67,6 +100,15 @@ body {
   max-width: 92%;
 }
 
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 @keyframes typing {
   from {
     width: 0;
@@ -76,12 +118,30 @@ body {
   }
 }
 
+@-webkit-keyframes heading-visibility {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes heading-visibility {
   from {
     opacity: 1;
   }
   to {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
   }
 }
 
@@ -103,25 +163,44 @@ body {
 }
 
 .animate-typing-h1 {
-  animation: 
+  -webkit-animation: 
     typing 1s 1.5s steps(40),
     blink-caret 0.0909s 1.5s step-end 11,
     heading-visibility 1s 1.5s 1 ease-in;
-  animation-fill-mode: forwards;
+          animation: 
+    typing 1s 1.5s steps(40),
+    blink-caret 0.0909s 1.5s step-end 11,
+    heading-visibility 1s 1.5s 1 ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 .animate-typing-h2 {
-  animation: 
+  -webkit-animation: 
     typing 1s 2.5s steps(40),
     blink-caret 0.0909s 2.5s step-end 11,
     heading-visibility 1s 2.5s 1 ease-in;
-  animation-fill-mode: forwards;
+          animation: 
+    typing 1s 2.5s steps(40),
+    blink-caret 0.0909s 2.5s step-end 11,
+    heading-visibility 1s 2.5s 1 ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 .navigation {
   position: fixed;
   right: 100px;
   top: 50%;
+}
+
+@-webkit-keyframes navigation-visibility {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes navigation-visibility {
@@ -138,30 +217,54 @@ body {
   width: 150px;
   height: 20px;
   opacity: 0;
-  animation: 1s 3.5s 1 ease-in navigation-visibility;
-  animation-fill-mode: forwards; 
+  -webkit-animation: 1s 3.5s 1 ease-in navigation-visibility;
+          animation: 1s 3.5s 1 ease-in navigation-visibility;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; 
 }
 
 .navigation ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
   color: #F8F8FF;
   text-decoration: none;
-  perspective: 200px;
-  perspective-origin: calc(100% - 25px);
+  -webkit-perspective: 200px;
+          perspective: 200px;
+  -webkit-perspective-origin: calc(100% - 25px);
+          perspective-origin: calc(100% - 25px);
 }
 
 .navigation ul li a:hover {
   cursor: default;
 }
 
-@keyframes fold-up {
+@-webkit-keyframes fold-up {
   from {
-    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
   }
   to {
-    transform: rotateY(-90deg);
+    -webkit-transform: rotateY(-90deg);
+            transform: rotateY(-90deg);
+  }
+}
+
+@keyframes fold-up {
+  from {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateY(-90deg);
+            transform: rotateY(-90deg);
   }
 }
 
@@ -169,10 +272,16 @@ body {
   display: inline-block;
   font-size: 24px;
   letter-spacing: 0.1em;
-  transform: rotateY(-90deg);
-  animation: 1.3s 3.9s 1 ease-in fold-up;
+  -webkit-transform: rotateY(-90deg);
+          transform: rotateY(-90deg);
+  -webkit-animation: 1.3s 3.9s 1 ease-in fold-up;
+          animation: 1.3s 3.9s 1 ease-in fold-up;
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
   transition: transform 0.2s ease-in;
-  transform-origin: right;
+  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+  -webkit-transform-origin: right;
+          transform-origin: right;
 }
 
 .nav-bullet {
@@ -182,6 +291,7 @@ body {
   height: 15px;
   border-radius: 50%;
   border: 1px solid white;
+  -webkit-transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
   transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
 }
 
@@ -193,11 +303,13 @@ body {
 }
 
 .nav-bullet:hover + .nav-text {
-  transform: rotateY(0deg);  
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);  
 }
 
 .home:focus > .nav-text {
-  transform: rotateY(0deg);  
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);  
 }
 
 h1 {
