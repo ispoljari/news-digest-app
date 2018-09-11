@@ -228,7 +228,8 @@ body {
 }
 
 .navigation ul li:last-child {
-  margin-top: -7px;
+  position: relative;
+  bottom: 8px;
 }
 
 .navigation ul li a {
@@ -296,8 +297,8 @@ body {
 .nav-bullet {
   display: inline-block;
   margin-left: 10px;
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   border: 1px solid white;
   -webkit-transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
