@@ -530,6 +530,7 @@ h2 {
   }
 
   .h2-inner-container {
+    margin-left: 0.3em;
     position: static;
   }
 
