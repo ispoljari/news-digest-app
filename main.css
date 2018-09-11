@@ -331,6 +331,13 @@ a {
   height: 18px;
 }
 
+.home:focus > .nav-bullet,
+.search:focus > .nav-bullet {
+  background-color: tomato;
+  width: 18px;
+  height: 18px;
+}
+
 .nav-bullet:hover + .nav-text {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);  
@@ -457,7 +464,8 @@ a {
   transition: color 0.1s ease-in, font-size 0.1s ease-in;
 }
 
-.menu li a:hover {
+.menu li a:hover,
+.menu li a:focus {
   color: tomato;
   font-size: 26px;
 }
