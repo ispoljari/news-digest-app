@@ -323,13 +323,13 @@ body {
 }
 
 h1 {
-  font-size: calc(40px + (100 - 40) * ((100vw - 320px) / (1100 - 320)));
+  font-size: calc(40px + (100 - 40) * ((100vw - 320px) / 780));
   margin-right: 0px;
   margin-bottom: 0px;
 }
 
 h2 {
-  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / (1050 - 320)));
+  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / 730));
 }
 
 @media screen and (max-width: 320px) {
