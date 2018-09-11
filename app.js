@@ -21,9 +21,23 @@ function setFocusOnSelect() {
 }
 
 function toggleHamburgerIconListen() {
-  $('.js-menuToggle').click(function() {
-    $(this).toggleClass('open');
-  })
+  $('body').on('click', '.js-menuToggle', function() {
+    animateBurgerIcon();
+    changeBurgerIconColor();
+    slideDownTheMenuStrip();
+  });
+}
+
+function animateBurgerIcon() {
+  $('.js-menuToggle').toggleClass('open');
+}
+
+function changeBurgerIconColor() {
+  $('.js-small-screen-nav').find('span').toggleClass('defaultBurgerColor').toggleClass('changeBurgerColor');
+}
+
+function slideDownTheMenuStrip() {
+  $('.js-menu').toggleClass('slideMenuDown');
 }
 
 $(startApp);

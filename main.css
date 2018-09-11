@@ -201,8 +201,9 @@ body {
 
 .navigation {
   position: fixed;
-  right: 40px;
-  top: 50px;
+  z-index: 2;
+  right: 30px;
+  top: 13px;
 }
 
 .large-screen-nav {
@@ -227,7 +228,7 @@ body {
   }
 }
 
-.navigation ul {
+.large-screen-nav {
   list-style: none;
   width: 150px;
   height: 20px;
@@ -238,12 +239,12 @@ body {
           animation-fill-mode: forwards; 
 }
 
-.navigation ul li:last-child {
+.large-screen-nav li:last-child {
   position: relative;
   bottom: 8px;
 }
 
-.navigation ul li a {
+.large-screen-nav li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -263,7 +264,7 @@ body {
           perspective-origin: calc(100% - 20px);
 }
 
-.navigation ul li a:hover {
+.large-screen-nav li a:hover {
   cursor: default;
 }
 
@@ -318,7 +319,7 @@ body {
 
 .nav-bullet:hover {
   cursor: pointer;
-  background-color: #F8F8FF;
+  background-color: tomato;
   width: 18px;
   height: 18px;
 }
@@ -328,7 +329,8 @@ body {
           transform: rotateY(0deg);  
 }
 
-.home:focus > .nav-text {
+.home:focus > .nav-text,
+.search:focus > .nav-text {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);  
 }
@@ -337,10 +339,9 @@ body {
 
 .menuToggle {
   display: none;
-  z-index: 1;
   user-select: none;
   display: block;
-  width: 55px;
+  width: 45px;
   height: 30px;
   transform: rotate(0deg);
   transition: 0.5s ease-in-out;
@@ -355,13 +356,16 @@ body {
   display: block;
   position: absolute;
   left: 0;
-  height: 9px;
+  height: 6px;
   width: 100%;
-  background: #F8F8FF;
   border-radius: 9px;
   opacity: 1;
   transform: rotate(0deg);
   transition: 0.25s ease-in-out;
+}
+
+.defaultBurgerColor {
+  background: #F8F8FF;
 }
 
 .menuToggle span:nth-child(1) {
@@ -369,15 +373,15 @@ body {
 }
 
 .menuToggle span:nth-child(2) {
-  top: 18px;
+  top: 15px;
 }
 
 .menuToggle span:nth-child(3) {
-  top: 36px;
+  top: 30px;
 }
 
 .menuToggle.open span:nth-child(1) {
-  top: 18px;
+  top: 15px;
   transform: rotate(135deg);
 }
 
@@ -387,12 +391,59 @@ body {
 }
 
 .menuToggle.open span:nth-child(3) {
-  top: 18px;
+  top: 15px;
   transform: rotate(-135deg);
 }
 
 .focused {
   outline: 3px solid lightblue;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  position: absolute;
+  top: 0px;
+  right: 0%;
+  left: 0%;
+  z-index: 1;
+  height: 60px;
+  width: 100%;
+  padding-left: 8%;
+  background: rgba(250,250,250,0.75);
+  transform-origin: 0% 0%;
+  transform: translate(0, -100%);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.menu li {
+  list-style: none;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #232323;
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  transition: color 0.1s ease-in, font-size 0.1s ease-in;
+}
+
+.menu li a:hover {
+  color: tomato;
+  font-size: 26px;
+}
+
+.menu li:last-child {
+  margin-left: 10%;
+}
+
+.slideMenuDown {
+  transform: none;
+}
+
+.changeBurgerColor {
+  background: #232323;
 }
 
 /* Media Queries */
