@@ -267,8 +267,8 @@ a {
   -webkit-perspective: 200px;
           perspective: 200px;
   -webkit-backface-visibility: hidden;
-  -webkit-perspective-origin: calc(100% - 22px);
-          perspective-origin: calc(100% - 22px);
+  -webkit-perspective-origin: calc(100% - 17px);
+          perspective-origin: calc(100% - 17px);
 }
 
 .large-screen-nav li a:hover {
@@ -305,17 +305,17 @@ a {
           transform: rotateY(-90deg);
   -webkit-animation: 1.3s 3.9s 1 ease-in fold-up;
           animation: 1.3s 3.9s 1 ease-in fold-up;
-  -webkit-transition: -webkit-transform 0.2s ease-in;
+  -webkit-transition: -webkit-transform 0.1s ease-in;
   transition: -webkit-transform 0.2s ease-in;
-  transition: transform 0.2s ease-in;
-  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+  transition: transform 0.1s ease-in;
+  transition: transform 0.1s ease-in, -webkit-transform 0.1s ease-in;
   -webkit-transform-origin: right;
           transform-origin: right;
 }
 
 .nav-bullet {
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 5px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
