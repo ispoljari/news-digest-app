@@ -120,7 +120,7 @@ body {
 
 @-webkit-keyframes heading-visibility {
   from {
-    opacity: 1;
+    opacity: 0;
   }
   to {
     opacity: 1;
@@ -169,10 +169,10 @@ body {
     typing 1s 1.5s steps(40),
     blink-caret 0.0909s 1.5s step-end 11,
     heading-visibility 0.01s 1.5s 1 ease-in;
-          animation: 
+  animation: 
     typing 1s 1.5s steps(40),
     blink-caret 0.0909s 1.5s step-end 11,
-    heading-visibility 1s 1.5s 1 ease-in;
+    heading-visibility 0.01s 1.5s 1 ease-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -184,10 +184,10 @@ body {
     typing 1s 2.5s steps(40),
     blink-caret 0.0909s 2.5s step-end 11,
     heading-visibility 0.01s 2.5s 1 ease-in;
-          animation: 
+  animation: 
     typing 1s 2.5s steps(40),
     blink-caret 0.0909s 2.5s step-end 11,
-    heading-visibility 1s 2.5s 1 ease-in;
+    heading-visibility 0.01s 2.5s 1 ease-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
