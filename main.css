@@ -106,7 +106,7 @@ a {
 
 .h2-inner-container {
   display: inline-block;
-  max-width: 94%;
+  max-width: 95%;
 }
 
 @-webkit-keyframes typing {
@@ -168,7 +168,7 @@ a {
   overflow: hidden;
   border-right: 0.15em solid transparent;
   white-space: nowrap;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
 }
 
 .animate-typing-h1 {
