@@ -246,6 +246,7 @@ body {
   text-decoration: none;
   -webkit-perspective: 200px;
           perspective: 200px;
+  -webkit-backface-visibility: hidden;
   -webkit-perspective-origin: calc(100% - 20px);
           perspective-origin: calc(100% - 20px);
 }
