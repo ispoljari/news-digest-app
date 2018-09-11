@@ -194,10 +194,13 @@ body {
 }
 
 .navigation {
-  display: none;
   position: fixed;
   right: 100px;
   top: 50%;
+}
+
+.large-screen-nav {
+  display: none;
 }
 
 @-webkit-keyframes navigation-visibility {
@@ -359,7 +362,7 @@ h2 {
     text-align: initial;
   }
 
-  .navigation {
+  .large-screen-nav {
     display: block;
   }
 }
