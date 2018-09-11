@@ -311,7 +311,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 2px solid white;
   -webkit-transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
   transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
 }
