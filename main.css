@@ -297,6 +297,19 @@ a {
   }
 }
 
+@keyframes deselect-bullet {
+  from {
+    background-color: tomato;
+    height: 18px;
+    width: 18px;
+  }
+  to {
+    background-color: transparent;
+    height: 12px;
+    width: 12px;
+  }
+}
+
 .nav-text {
   display: inline-block;
   font-size: 18px;
@@ -306,7 +319,7 @@ a {
   -webkit-animation: 1.3s 3.9s 1 ease-in fold-up;
           animation: 1.3s 3.9s 1 ease-in fold-up;
   -webkit-transition: -webkit-transform 0.1s ease-in;
-  transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.1s ease-in;
   transition: transform 0.1s ease-in;
   transition: transform 0.1s ease-in, -webkit-transform 0.1s ease-in;
   -webkit-transform-origin: right;
@@ -320,6 +333,7 @@ a {
   height: 12px;
   border-radius: 50%;
   border: 2px solid white;
+  animation: 1.3s 3.9s 1 ease-in deselect-bullet;
   -webkit-transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
   transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
 }
