@@ -175,9 +175,11 @@ a {
 }
 
 .animate-typing-h1 {
+  /* Hacks for preventing h1 appearing briefly, before the animation starts */
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
+  /* -- */
 
   -webkit-animation: 
     typing 1s 1.5s steps(40),
@@ -192,9 +194,11 @@ a {
 }
 
 .animate-typing-h2 {
+  /* Hacks for preventing h2 appearing briefly, before the animation starts */
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
+  /* -- */
 
   -webkit-animation: 
     typing 1s 2.5s steps(40),
@@ -270,9 +274,13 @@ a {
   text-decoration: none;
   -webkit-perspective: 200px;
           perspective: 200px;
+
+  /* Hacks for preventing the nav items appearing briefly, before the animation starts */  
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
+  /* -- */
+
   -webkit-perspective-origin: calc(100% - 17px);
           perspective-origin: calc(100% - 17px);
 }
@@ -300,6 +308,19 @@ a {
   to {
     -webkit-transform: rotateY(-90deg);
             transform: rotateY(-90deg);
+  }
+}
+
+@-webkit-keyframes deselect-bullet {
+  from {
+    background-color: tomato;
+    height: 18px;
+    width: 18px;
+  }
+  to {
+    background-color: transparent;
+    height: 12px;
+    width: 12px;
   }
 }
 
@@ -339,7 +360,8 @@ a {
   height: 12px;
   border-radius: 50%;
   border: 2px solid white;
-  animation: 1.3s 3.9s 1 ease-in deselect-bullet;
+  -webkit-animation: 1.3s 3.9s 1 ease-in deselect-bullet;
+          animation: 1.3s 3.9s 1 ease-in deselect-bullet;
   -webkit-transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
   transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
 }
