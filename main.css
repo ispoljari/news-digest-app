@@ -96,7 +96,7 @@ a {
 .heading-outer-container {
   max-width: 100%;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 100px;
   margin-left: -4px;
   padding: 0 10px;
 }
@@ -217,8 +217,8 @@ a {
 .navigation {
   position: fixed;
   z-index: 2;
-  right: 16px;
-  top: 16px;
+  right: 18px;
+  top: 18px;
 }
 
 .large-screen-nav {
@@ -400,8 +400,8 @@ a {
       -ms-user-select: none;
           user-select: none;
   display: block;
-  width: 45px;
-  height: 30px;
+  width: 35px;
+  height: 28px;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   -webkit-transition: 0.5s ease-in-out;
@@ -436,15 +436,15 @@ a {
 }
 
 .menuToggle span:nth-child(2) {
-  top: 15px;
+  top: 12px;
 }
 
 .menuToggle span:nth-child(3) {
-  top: 30px;
+  top: 24px;
 }
 
 .menuToggle.open span:nth-child(1) {
-  top: 15px;
+  top: 12px;
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
 }
@@ -455,7 +455,7 @@ a {
 }
 
 .menuToggle.open span:nth-child(3) {
-  top: 15px;
+  top: 12px;
   -webkit-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
@@ -494,22 +494,23 @@ a {
 }
 
 .menu li {
+  display: flex;
+  align-items: center;
   list-style: none;
 }
 
 .menu li a {
   text-decoration: none;
   color: #232323;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.06em;
-  -webkit-transition: color 0.1s ease-in, font-size 0.1s ease-in;
-  transition: color 0.1s ease-in, font-size 0.1s ease-in;
+  -webkit-transition: color 0.1s ease-in;
+  transition: color 0.1s ease-in;
 }
 
 .menu li a:hover,
 .menu li a:focus {
   color: tomato;
-  font-size: 26px;
 }
 
 .menu li:last-child {
@@ -523,6 +524,25 @@ a {
 
 .changeBurgerColor {
   background: #232323;
+}
+
+/* SVG Icons - svgicons.sparkk.fr */
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 5px;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #232323;
+}
+
+.svg-icon circle {
+  stroke: #232323;
+  stroke-width: 0.4;
 }
 
 /* Media Queries */
@@ -553,6 +573,60 @@ h2 {
     -webkit-text-size-adjust: none;
   }
 }
+
+@media screen and (min-width: 450px) { 
+  .menu li a {
+    font-size: 20px;
+  }
+
+  .svg-icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+}
+
+@media screen and (min-width: 650px) { 
+  .menu li a {
+    font-size: 22px;
+  }
+
+  .svg-icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  .navigation {
+    top: 16px;
+    right: 16px;
+  }
+
+  .menuToggle {
+    width: 45px;
+    height: 35px;
+  }
+
+  .menuToggle.open span:nth-child(1),
+  .menuToggle.open span:nth-child(3),
+  .menuToggle span:nth-child(2) {
+    top: 15px;
+  }
+
+  .menuToggle span:nth-child(3) {
+    top: 30px;
+  }
+}
+
+@media screen and (min-width: 850px) { 
+  .menu li a {
+    font-size: 24px;
+  }
+
+  .svg-icon {
+    width: 1.3em;
+    height: 1.3em;
+  }
+}
+
 
 @media screen and (min-width: 1050px) {
 	h1 {
