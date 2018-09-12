@@ -57,15 +57,29 @@ function detectSrollDown() {
         // fadeInSearchForm();
       }
     })
-  },4000);
+  }, 4000);
 }
 
 function fadeOutHeading() {
-  $('.js-headings').addClass('fade-down-scroll');
+  $('.js-headings').addClass('eject-up-scroll fade-up-scroll');
+
+  setTimeout(function() {
+    $('.js-headings').css('top','+1000px');
+
+    $('.js-h1').removeClass('animate-typing-h1');
+    $('.js-h2').removeClass('animate-typing-h2');
+    $('.js-headings').css('display','none');
+  }, 400);
 }
 
 function fadeInHeading() {
-  $('.js-headings').removeClass('fade-down-scroll');
+  $('.js-headings').css({'display':'block','top':''}).removeClass('eject-up-scroll');
+  $('.js-h1').css('opacity','1');
+  $('.js-h2').css('opacity','1');
+
+  setTimeout(function() {
+    $('.js-headings').removeClass('fade-up-scroll');
+  }, 400);
 }
 
 $(startApp);

@@ -110,7 +110,7 @@ a {
   /* transition effects when the user scrolls down */
   opacity: 1;
   transform: translateY(0px);
-  transition: transform 0.3s ease-in, opacity 0.2s ease-in;
+  transition: transform 0.4s ease-in, opacity 0.3s ease-in;
 }
 
 .h1-inner-container {
@@ -186,13 +186,15 @@ a {
   letter-spacing: 0.09em;
 }
 
-.animate-typing-h1 {
+h1 {
   /* Hacks for preventing h1 appearing briefly, before the animation starts */
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
   /* -- */
+}
 
+.animate-typing-h1 {
   -webkit-animation: 
     typing 1s 1.5s steps(40),
     blink-caret 0.0909s 1.5s step-end 11,
@@ -205,13 +207,15 @@ a {
           animation-fill-mode: forwards;
 }
 
-.animate-typing-h2 {
+h2 {
   /* Hacks for preventing h2 appearing briefly, before the animation starts */
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
   /* -- */
+}
 
+.animate-typing-h2 {
   -webkit-animation: 
     typing 1s 2.5s steps(40),
     blink-caret 0.0909s 2.5s step-end 11,
@@ -696,8 +700,12 @@ h2 {
   display: none;
 }
 
-.fade-down-scroll {
+.eject-up-scroll {
   position: fixed;
-  opacity: 0;
-  transform:  translateY(800px);
+  transform:  translateY(-1500px);
 }
+
+.fade-up-scroll {
+  opacity: 0;
+}
+
