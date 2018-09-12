@@ -264,6 +264,9 @@ h2 {
   width: 150px;
   height: 20px;
   opacity: 0;
+}
+
+.large-screen-nav-animate {
   -webkit-animation: 1s 3.5s 1 ease-in navigation-visibility;
           animation: 1s 3.5s 1 ease-in navigation-visibility;
   -webkit-animation-fill-mode: forwards;
@@ -359,14 +362,17 @@ h2 {
   letter-spacing: 0.1em;
   -webkit-transform: rotateY(-90deg);
           transform: rotateY(-90deg);
-  -webkit-animation: 1.3s 3.9s 1 ease-in fold-up;
-          animation: 1.3s 3.9s 1 ease-in fold-up;
   -webkit-transition: -webkit-transform 0.1s ease-in;
   transition: -webkit-transform 0.1s ease-in;
   transition: transform 0.1s ease-in;
   transition: transform 0.1s ease-in, -webkit-transform 0.1s ease-in;
   -webkit-transform-origin: right;
           transform-origin: right;
+}
+
+.nav-text-animate {
+  -webkit-animation: 1.3s 3.9s 1 ease-in fold-up;
+          animation: 1.3s 3.9s 1 ease-in fold-up;
 }
 
 .nav-bullet {
@@ -376,10 +382,13 @@ h2 {
   height: 12px;
   border-radius: 50%;
   border: 2px solid white;
-  -webkit-animation: 1.3s 3.9s 1 ease-in deselect-bullet;
-          animation: 1.3s 3.9s 1 ease-in deselect-bullet;
   -webkit-transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
   transition: background-color 0.1s ease-in, width 0.1s ease-in, height 0.1s ease-in;
+}
+
+.nav-bullet-animate {
+  -webkit-animation: 1.3s 3.9s 1 ease-in deselect-bullet;
+          animation: 1.3s 3.9s 1 ease-in deselect-bullet;
 }
 
 .nav-bullet:hover {
@@ -701,7 +710,6 @@ h2 {
 }
 
 .eject-up-scroll {
-  position: fixed;
   transform:  translateY(-1500px);
 }
 
