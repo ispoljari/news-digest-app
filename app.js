@@ -1,9 +1,10 @@
 function startApp() {
   fadeInHamburgerIcon();
-  setFocusOnSelect();
+  slideDownMenuOnFocus();
   toggleHamburgerIconListen();
   scrollUpDownListen();
-  navigationLinksListen();
+  largeNavigationLinksListen();
+  smallNavigationLinksListen();
   blockInitialAnimations();
 }
 
@@ -15,20 +16,18 @@ function fadeInHamburgerIcon() {
   }, 3500);
 }
 
-function setFocusOnSelect() {
-  $('.js-home').focusin(function() {
+// page interaction animations
+
+function slideDownMenuOnFocus() {
+  $('.js-home-small, .js-search-small').focusin(function() {
+    openBurgerIcon();
+    openBurgerIconColor();
     slideDownTheMenuStrip();
   });
 
-  $('.js-home').focusout(function() {
-    slideUpTheMenuStrip();
-  });
-
-  $('.js-search').focusin(function() {
-    slideDownTheMenuStrip();
-  });
-
-  $('.js-search').focusout(function() {
+  $('.js-home-small, .js-search-small').focusout(function() {
+    closeBurgerIcon();
+    closeBurgerIconColor();
     slideUpTheMenuStrip();
   });
 }
@@ -45,8 +44,24 @@ function animateBurgerIcon() {
   $('.js-menuToggle').toggleClass('open');
 }
 
+function openBurgerIcon() {
+  $('.js-menuToggle').addClass('open');
+}
+
+function closeBurgerIcon() {
+  $('.js-menuToggle').removeClass('open');
+}
+
 function changeBurgerIconColor() {
   $('.js-small-screen-nav').find('span').toggleClass('defaultBurgerColor').toggleClass('changeBurgerColor');
+}
+
+function openBurgerIconColor() {
+  $('.js-small-screen-nav').find('span').removeClass('defaultBurgerColor').addClass('changeBurgerColor');
+}
+
+function closeBurgerIconColor() {
+  $('.js-small-screen-nav').find('span').addClass('defaultBurgerColor').removeClass('changeBurgerColor');
 }
 
 function toggleTheMenuStrip() {
@@ -78,23 +93,36 @@ function scrollUpDownListen() {
   }, 4000);
 }
 
-function navigationLinksListen() {
+function largeNavigationLinksListen() {
   setTimeout(function() {
-    $('body').on('click','.js-home',function() {
+    $('body').on('click','.js-home-large',function() {
       fadeInHeading();
-      $('.js-home').blur();
-      animateBurgerIcon();
-      changeBurgerIconColor();
+      $('.js-home-large').blur();
     });
 
-    $('body').on('click','.js-search',function() {
+    $('body').on('click','.js-search-large',function() {
       fadeOutHeading();
-      $('.js-search').blur();
-      animateBurgerIcon();
-      changeBurgerIconColor();
+      $('.js-search-large').blur();
     });
   }, 4000);
-  
+}
+
+function smallNavigationLinksListen() {
+  setTimeout(function() {
+    $('body').on('click','.js-home-small',function() {
+      fadeInHeading();
+      $('.js-home-small').blur();
+      closeBurgerIcon();
+      closeBurgerIconColor();
+    });
+
+    $('body').on('click','.js-search-small',function() {
+      fadeOutHeading();
+      $('.js-search-small').blur();
+      closeBurgerIcon();
+      closeBurgerIconColor();
+    });
+  }, 4000);
 }
 
 function fadeOutHeading() {
