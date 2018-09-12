@@ -10,8 +10,8 @@ a {
 
 /* Background img layout, style and animation */
 
-.content {
-  overflow: auto;
+.header-content {
+  overflow: hidden;
   position: relative;
 }
 
@@ -63,7 +63,7 @@ a {
   }
 }
 
-.content:before {
+.header-content:before {
   content: "";
   position: fixed;
   left: -5%;
@@ -99,6 +99,11 @@ a {
   margin-top: 100px;
   margin-left: -4px;
   padding: 0 10px;
+
+  /* transition effects when the user scrolls down */
+  opacity: 1;
+  transform: translateY(0px);
+  transition: transform 0.3s ease-in, opacity 0.2s ease-in;
 }
 
 .h1-inner-container {
@@ -684,3 +689,8 @@ h2 {
   display: none;
 }
 
+.fade-down-scroll {
+  position: fixed;
+  opacity: 0;
+  transform:  translateY(800px);
+}

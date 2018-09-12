@@ -2,7 +2,10 @@ function startApp() {
   fadeInHamburgerIcon();
   // setFocusOnSelect();
   toggleHamburgerIconListen();
+  detectSrollDown();
 }
+
+// page load animations
 
 function fadeInHamburgerIcon() {
   setTimeout(function() {
@@ -38,6 +41,31 @@ function changeBurgerIconColor() {
 
 function slideDownTheMenuStrip() {
   $('.js-menu').toggleClass('slideMenuDown');
+}
+
+// page transition triger and animations
+
+function detectSrollDown() {
+  setTimeout(function() {
+    $('body').on('mousewheel',function(event) {
+      if (event.originalEvent.wheelDelta>0) {
+        // scroll up
+        fadeInHeading();
+      } else {
+        // scroll down
+        fadeOutHeading();
+        // fadeInSearchForm();
+      }
+    })
+  },4000);
+}
+
+function fadeOutHeading() {
+  $('.js-headings').addClass('fade-down-scroll');
+}
+
+function fadeInHeading() {
+  $('.js-headings').removeClass('fade-down-scroll');
 }
 
 $(startApp);
