@@ -176,6 +176,7 @@ a {
 
 .animate-typing-h1 {
   -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
 
   -webkit-animation: 
@@ -192,6 +193,7 @@ a {
 
 .animate-typing-h2 {
   -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
 
   -webkit-animation: 
@@ -269,6 +271,7 @@ a {
   -webkit-perspective: 200px;
           perspective: 200px;
   -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0,0,0);
   -webkit-perspective-origin: calc(100% - 17px);
           perspective-origin: calc(100% - 17px);
