@@ -74,11 +74,38 @@
     </ul>
   </header>
 
-  <!-- <section class="">
-    <div class="row">
+  <section class="search-screen row">
+    <div class="col-12">
+      <form class="form-news js-form-news" autocomplete="off">
+          <label class="news-group-label js-news-group-label">
+            <a>News Group:</a> 
+            <select name="news-group"	class="news-group js-news-group" required>
+              <option value="top-headlines" selected>Top Headlines</option>
+              <option value="everything">Everything</option>
+            </select> 
+          </label>
 
+          <label class="search-mechanism-label js-search-mechanism-label">
+            <a>Search by:</a> 
+            <select name="search-mechanism"	class="search-mechanism js-search-mechanism" required>
+              <option value="source" selected>Media Source</option>
+              <option value="country">Country</option>
+              <option value="category">Category</option>
+              <option value="q">Keyword</option>
+            </select> 
+          </label>
+
+          <label class="input-label js-input-label"><a class="js-input-label-text input-label-text">Media source:</a>
+            <div class="input-label-group">
+            <input type="text" name="input-search-term" class="input-search-term js-input-search-term" list="autocomplete" placeholder="CNN" required>
+            <input type="image" src="https://tf-assets-prod.s3.amazonaws.com/tf-curric/WEB-DEV-001/2.4.6_challenge_design_to_code/magnifying-glass.png" alt="The submit button in the form of a magnifying glass." class="sources-submit js-sources-submit">
+            <datalist id="autocomplete">
+            </datalist>
+            </div>
+          </label>
+        </form>
     </div>
-  </section> -->
+  </section>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

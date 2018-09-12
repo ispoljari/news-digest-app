@@ -673,3 +673,10 @@ h2 {
     display: none;
   }
 }
+
+/* Search screen */
+
+.search-screen {
+  display: none;
+}
+
