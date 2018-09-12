@@ -175,8 +175,9 @@ a {
 }
 
 .animate-typing-h1 {
-  -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
+  -webkit-transform: scale(1);
+
   -webkit-animation: 
     typing 1s 1.5s steps(40),
     blink-caret 0.0909s 1.5s step-end 11,
@@ -190,8 +191,9 @@ a {
 }
 
 .animate-typing-h2 {
-  -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
+  -webkit-transform: scale(1);
+
   -webkit-animation: 
     typing 1s 2.5s steps(40),
     blink-caret 0.0909s 2.5s step-end 11,
