@@ -674,9 +674,13 @@ h2 {
   }
 }
 
-/* Search screen */
+/* Search and results partials */
 
-.search-screen {
+.search-form-partial {
+  display: none;
+}
+
+.results-partial {
   display: none;
 }
 
