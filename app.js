@@ -83,11 +83,15 @@ function navigationLinksListen() {
     $('body').on('click','.js-home',function() {
       fadeInHeading();
       $('.js-home').blur();
+      animateBurgerIcon();
+      changeBurgerIconColor();
     });
 
     $('body').on('click','.js-search',function() {
       fadeOutHeading();
       $('.js-search').blur();
+      animateBurgerIcon();
+      changeBurgerIconColor();
     });
   }, 4000);
   

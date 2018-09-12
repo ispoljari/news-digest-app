@@ -109,8 +109,12 @@ a {
 
   /* transition effects when the user scrolls down */
   opacity: 1;
-  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: opacity 0.3s ease-in, -webkit-transform 0.4s ease-in;
+  transition: opacity 0.3s ease-in, -webkit-transform 0.4s ease-in;
   transition: transform 0.4s ease-in, opacity 0.3s ease-in;
+  transition: transform 0.4s ease-in, opacity 0.3s ease-in, -webkit-transform 0.4s ease-in;
 }
 
 .h1-inner-container {
@@ -187,6 +191,10 @@ a {
 }
 
 h1 {
+  font-size: calc(40px + (100 - 40) * ((100vw - 320px) / 780));
+  margin-right: 0px;
+  margin-bottom: 0px;
+
   /* Hacks for preventing h1 appearing briefly, before the animation starts */
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
@@ -208,6 +216,8 @@ h1 {
 }
 
 h2 {
+  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / 730));
+
   /* Hacks for preventing h2 appearing briefly, before the animation starts */
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
@@ -580,16 +590,6 @@ h2 {
 
 /* Media Queries */
 
-h1 {
-  font-size: calc(40px + (100 - 40) * ((100vw - 320px) / 780));
-  margin-right: 0px;
-  margin-bottom: 0px;
-}
-
-h2 {
-  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / 730));
-}
-
 @media screen and (max-width: 320px) {
 	h1 {
 		font-size: 40px;
@@ -701,6 +701,17 @@ h2 {
   }
 }
 
+/* Classes for transitions between screens */
+
+.eject-up-scroll {
+  -webkit-transform:  translateY(-1500px);
+          transform:  translateY(-1500px);
+}
+
+.fade-up-scroll {
+  opacity: 0;
+}
+
 /* Search and results partials */
 
 .search-form-partial {
@@ -709,13 +720,5 @@ h2 {
 
 .results-partial {
   display: none;
-}
-
-.eject-up-scroll {
-  transform:  translateY(-1500px);
-}
-
-.fade-up-scroll {
-  opacity: 0;
 }
 
