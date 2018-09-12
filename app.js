@@ -81,27 +81,32 @@ function slideUpTheMenuStrip() {
 function scrollUpDownListen() {
   setTimeout(function() {
     $('body').on('mousewheel',function(event) {
-      if (event.originalEvent.wheelDelta>0) {
-        // scroll up
-        fadeInHeading();
-      } else {
-        // scroll down
+      if (event.originalEvent.wheelDelta<0) {
+        // ONLY SCROLL DOWN
         fadeOutHeading();
-        // fadeInSearchForm();
+        setTimeout(function() {
+          fadeInSearchForm();
+        }, 450);
       }
     });
   }, 4000);
 }
 
-function largeNavigationLinksListen() {
+function largeNavigationLinksListen() { // TRENUTNO RADIM NA OVOME!!!
   setTimeout(function() {
     $('body').on('click','.js-home-large',function() {
-      fadeInHeading();
+      fadeOutSearchForm();
+      setTimeout(function() {
+        fadeInHeading();
+      }, 450);
       $('.js-home-large').blur();
     });
 
-    $('body').on('click','.js-search-large',function() {
+    $('body').on('click','.js-search-large',function() { // TRENUTNO RADIM NA OVOME!!
       fadeOutHeading();
+      setTimeout(function() {
+        fadeInSearchForm();
+      }, 450);
       $('.js-search-large').blur();
     });
   }, 4000);
@@ -110,7 +115,10 @@ function largeNavigationLinksListen() {
 function smallNavigationLinksListen() {
   setTimeout(function() {
     $('body').on('click','.js-home-small',function() {
-      fadeInHeading();
+      fadeOutSearchForm();
+      setTimeout(function() {
+        fadeInHeading();
+      }, 450);
       $('.js-home-small').blur();
       closeBurgerIcon();
       closeBurgerIconColor();
@@ -118,6 +126,9 @@ function smallNavigationLinksListen() {
 
     $('body').on('click','.js-search-small',function() {
       fadeOutHeading();
+      setTimeout(function() {
+        fadeInSearchForm();
+      }, 450);
       $('.js-search-small').blur();
       closeBurgerIcon();
       closeBurgerIconColor();
@@ -126,7 +137,7 @@ function smallNavigationLinksListen() {
 }
 
 function fadeOutHeading() {
-  $('.js-headings').addClass('eject-up-scroll fade-up-scroll');
+  $('.js-headings').addClass('eject-down-scroll fade-out-down-scroll');
 
   setTimeout(function() {
     $('.js-h1').removeClass('animate-typing-h1');
@@ -136,10 +147,10 @@ function fadeOutHeading() {
 }
 
 function fadeInHeading() {
-  $('.js-headings').css('display','block').removeClass('eject-up-scroll');
+  $('.js-headings').css('display','block').removeClass('eject-down-scroll');
 
   setTimeout(function() {
-    $('.js-headings').removeClass('fade-up-scroll');
+    $('.js-headings').removeClass('fade-out-down-scroll');
   }, 400);
 }
 
@@ -159,6 +170,14 @@ function blockInitialAnimations() {
     $('.js-nav-bullet').removeClass('nav-bullet-animate');
     $('.js-nav-text').removeClass('nav-text-animate');
   }, 5500);
+}
+
+function fadeInSearchForm() {
+  $('.js-search-form-partial').fadeIn(400);
+}
+
+function fadeOutSearchForm() {
+  $('.js-search-form-partial').fadeOut(400);
 }
 
 $(startApp);
