@@ -1,6 +1,6 @@
 function startApp() {
   fadeInHamburgerIcon();
-  // setFocusOnSelect();
+  setFocusOnSelect();
   toggleHamburgerIconListen();
   scrollUpDownListen();
   navigationLinksListen();
@@ -12,16 +12,24 @@ function startApp() {
 function fadeInHamburgerIcon() {
   setTimeout(function() {
     $('.js-small-screen-nav').fadeIn('slow');
-  },3500);
+  }, 3500);
 }
 
 function setFocusOnSelect() {
-  $('.js-small-screen-nav').focusin(function() {
-    $('.js-menuToggle').addClass('focused');
+  $('.js-home').focusin(function() {
+    slideDownTheMenuStrip();
   });
 
-  $('.js-small-screen-nav').focusout(function() {
-    $('.js-menuToggle').removeClass('focused');
+  $('.js-home').focusout(function() {
+    slideUpTheMenuStrip();
+  });
+
+  $('.js-search').focusin(function() {
+    slideDownTheMenuStrip();
+  });
+
+  $('.js-search').focusout(function() {
+    slideUpTheMenuStrip();
   });
 }
 
@@ -29,7 +37,7 @@ function toggleHamburgerIconListen() {
   $('body').on('click', '.js-menuToggle', function() {
     animateBurgerIcon();
     changeBurgerIconColor();
-    slideDownTheMenuStrip();
+    toggleTheMenuStrip();
   });
 }
 
@@ -41,8 +49,16 @@ function changeBurgerIconColor() {
   $('.js-small-screen-nav').find('span').toggleClass('defaultBurgerColor').toggleClass('changeBurgerColor');
 }
 
-function slideDownTheMenuStrip() {
+function toggleTheMenuStrip() {
   $('.js-menu').toggleClass('slideMenuDown');
+}
+
+function slideDownTheMenuStrip() {
+  $('.js-menu').addClass('slideMenuDown');
+}
+
+function slideUpTheMenuStrip() {
+  $('.js-menu').removeClass('slideMenuDown');
 }
 
 // page transition triger and animations
