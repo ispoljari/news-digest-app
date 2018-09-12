@@ -529,6 +529,8 @@ a {
 /* SVG Icons - svgicons.sparkk.fr */
 
 .svg-icon {
+  position: relative;
+  bottom: 1px;
   width: 1em;
   height: 1em;
   margin-right: 5px;
@@ -580,6 +582,7 @@ h2 {
   }
 
   .svg-icon {
+    position: static;
     width: 1.1em;
     height: 1.1em;
   }
