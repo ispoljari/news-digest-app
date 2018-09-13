@@ -583,6 +583,7 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  letter-spacing: 0.09em;
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;

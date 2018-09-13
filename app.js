@@ -4,6 +4,7 @@ function startApp() {
   toggleNavHomeColor();
   toggleHamburgerIconListen();
   scrollUpDownListen();
+  swipeUpDownListen();
   largeNavigationLinksListen();
   smallNavigationLinksListen();
   blockInitialAnimations();
@@ -95,6 +96,46 @@ function scrollUpDownListen() {
         }, 450);
       }
     });
+  }, 4000);
+}
+
+function swipeUpDownListen() { // this function is done with pure JS because jQuery doesn't support it
+  setTimeout(function() {
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchmove', handleTouchMove, false);
+
+    let yDown = null;
+
+    function handleTouchStart(event) {
+      yDown = getTouches(event)[0].clientY;
+    }
+
+    function getTouches(event) {
+      return event.touches
+    }
+
+    function handleTouchMove(event) {
+      if (!yDown) {
+        return;
+      }
+
+      let yUp = evt.touches[0].clientY;
+      let yDiff = yDown - yUp;
+
+      if (yDiff > 0) {
+        // up swipe
+        fadeOutHeading();
+        fadeOutScrollLabel();
+        if (newsApiAppData.sitePage === 1) {
+          toggleNavLinksColor();      
+          newsApiAppData.sitePage++;
+        }
+        setTimeout(function() {
+          fadeInSearchForm();
+        }, 450);
+      }
+    }
+
   }, 4000);
 }
 
