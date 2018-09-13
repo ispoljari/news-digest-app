@@ -1,4 +1,5 @@
 function startApp() {
+  detectBrowserVendor();
   fadeInHamburgerIcon();
   slideDownMenuOnFocus();
   toggleNavHomeColor();
@@ -8,6 +9,14 @@ function startApp() {
   largeNavigationLinksListen();
   smallNavigationLinksListen();
   blockInitialAnimations();
+}
+
+function detectBrowserVendor() {
+  // Firefox 1.0+
+  newsApiAppData.browserType.isFirefox = typeof InstallTrigger !== 'undefined';
+
+  // Internet Explorer 6-11
+  newsApiAppData.browserType.isIE = /*@cc_on!@*/false || !!document.documentMode;
 }
 
 // page load animations
@@ -82,21 +91,34 @@ function slideUpTheMenuStrip() {
 
 function scrollUpDownListen() {
   setTimeout(function() {
-    $('body').on('mousewheel',function(event) {
-      if (event.originalEvent.wheelDelta<0) {
-        // ONLY SCROLL DOWN
-        fadeOutHeading();
-        fadeOutScrollLabel();
-        if (newsApiAppData.sitePage === 1) {
-          toggleNavLinksColor();      
-          newsApiAppData.sitePage++;
+    if (newsApiAppData.browserType.isFirefox || newsApiAppData.browserType.isIE) {
+      $(window).bind('DOMMouseScroll',function(event) {
+        if (event.originalEvent.detail>0) {
+          // SCROLL DOWN
+          executeOnPageScroll();
         }
-        setTimeout(function() {
-          fadeInSearchForm();
-        }, 450);
-      }
-    });
+      });
+    } else {
+      $('body').on('mousewheel',function(event) {
+        if (event.originalEvent.wheelDelta<0) {
+          executeOnPageScroll();          
+        }
+      });
+    }
   }, 4000);
+}
+
+function executeOnPageScroll() {
+  // SCROLL DOWN
+  fadeOutHeading();
+  fadeOutScrollLabel();
+  if (newsApiAppData.sitePage === 1) {
+    toggleNavLinksColor();      
+    newsApiAppData.sitePage++;
+  }
+  setTimeout(function() {
+    fadeInSearchForm();
+  }, 450);
 }
 
 function swipeUpDownListen() { // this function is done with pure JS because jQuery doesn't support it

@@ -19,6 +19,10 @@ const newsApiSendData = {
 }
 
 const newsApiAppData = {
+  browserType : {
+    isFirefox : false,
+    isIE : false
+  },
   sitePage : 1,
 	newsGroup : 'top-headlines',
 	searchMechanism : 'source',
