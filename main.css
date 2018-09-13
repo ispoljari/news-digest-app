@@ -409,6 +409,10 @@ h2 {
           transform: rotateY(0deg);  
 }
 
+.border-page-style {
+  border-color: tomato;
+}
+
 /* Small screens (hamburger icon) navigation; styles and animation*/
 
 .menuToggle {

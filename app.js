@@ -1,6 +1,7 @@
 function startApp() {
   fadeInHamburgerIcon();
   slideDownMenuOnFocus();
+  toggleHomeBulletColor();
   toggleHamburgerIconListen();
   scrollUpDownListen();
   largeNavigationLinksListen();
@@ -85,6 +86,8 @@ function scrollUpDownListen() {
         // ONLY SCROLL DOWN
         fadeOutHeading();
         fadeOutScrollLabel();
+        // if ()
+        // toggleBulletColor();      
         setTimeout(function() {
           fadeInSearchForm();
         }, 450);
@@ -93,9 +96,10 @@ function scrollUpDownListen() {
   }, 4000);
 }
 
-function largeNavigationLinksListen() { // TRENUTNO RADIM NA OVOME!!!
+function largeNavigationLinksListen() {
   setTimeout(function() {
     $('body').on('click','.js-home-large',function() {
+      toggleBulletColor();
       fadeOutSearchForm();
       setTimeout(function() {
         fadeInHeading();
@@ -104,7 +108,8 @@ function largeNavigationLinksListen() { // TRENUTNO RADIM NA OVOME!!!
       $('.js-home-large').blur();
     });
 
-    $('body').on('click','.js-search-large',function() { // TRENUTNO RADIM NA OVOME!!
+    $('body').on('click','.js-search-large',function() { 
+      toggleBulletColor();      
       fadeOutHeading();
       fadeOutScrollLabel();
       setTimeout(function() {
@@ -114,6 +119,15 @@ function largeNavigationLinksListen() { // TRENUTNO RADIM NA OVOME!!!
     });
   }, 4000);
 }
+
+function toggleBulletColor() {
+  $('.js-large-screen-nav').find('.js-nav-bullet').toggleClass('border-page-style');
+}
+
+function toggleHomeBulletColor() {
+  $('.js-home-large').find('.js-nav-bullet').toggleClass('border-page-style');
+}
+
 
 function smallNavigationLinksListen() {
   setTimeout(function() {
