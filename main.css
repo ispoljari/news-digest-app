@@ -679,9 +679,13 @@ h2 {
 	margin-left: 5px;
 	padding: 2px;
 	min-height: 25px;
-	width: 60%;
+	width: 55%;
 	border: 1px solid #b8c2cc;
-	border-radius: 3px;	
+  border-radius: 3px;	
+  color: #2f2f2f;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 	-webkit-transition: background-color 0.05s ease-in;	
 	transition: background-color 0.05s ease-in;
 	background-color: white;			
@@ -695,6 +699,12 @@ h2 {
 	cursor: pointer;	
 }
 
+.form-news label {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .news-group-label,
 .search-mechanism-label,
 .input-label {
@@ -706,7 +716,7 @@ h2 {
 	        justify-content: space-between;
 	-webkit-box-align: center;
 	    -ms-flex-align: center;
-	        align-items: center;
+          align-items: center;
 }
 
 .sort-news-label,
@@ -791,6 +801,7 @@ h2 {
   height: 25px;
 	border: 1px solid #b8c2cc;;
   border-radius: 3px;
+  background-color: white;
 }
 
 .sources-submit:hover {
