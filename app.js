@@ -5,12 +5,9 @@ function startApp() {
   fadeInHamburgerIcon();
   slideDownMenuOnFocus();
   toggleNavHomeColor();
-  toggleHamburgerIconListen();
-  scrollUpDownListen();
-  swipeUpDownListen();
-  largeNavigationLinksListen();
-  smallNavigationLinksListen();
   blockInitialAnimations();
+  retrieveDataFromNewsApi();
+	registerEventListenersSelectSubmit();	
 }
 
 function detectBrowserVendor() {
@@ -169,7 +166,7 @@ function swipeUpDownListen() { // this function is done with pure JS because jQu
           fadeInSearchForm();
         }, 450);
       }
-    }
+    }s
 
   }, 4000);
 }
@@ -310,6 +307,455 @@ function fadeOutSearchForm() {
   setTimeout(function() {
     $('.js-search-form-partial').css('display','none');
   }, 380);
+}
+
+function retrieveDataFromNewsApi() {
+	$.when($.getJSON(newsApiSendData.url.endpoint, newsApiSendData.query, storeRetrievedData).fail(renderWarningMessageToUser)).done(executeAfterApiDataRetrieval);
+}
+
+function registerEventListenersSelectSubmit() {
+  toggleHamburgerIconListen();
+  scrollUpDownListen();
+  swipeUpDownListen();
+  largeNavigationLinksListen();
+  smallNavigationLinksListen();
+	selectNewsGroupListener();
+	selectSearchMechanismListener();
+	selectSortTypeListener();	
+	selectLanguageListener();
+	submitNewSearchTerm();
+	goToPreviousPage();
+	goToNextPage();
+}
+
+function storeRetrievedData(data) {
+	deleteStoredDataFromPreviousRetrieval();
+	if (validateApiStatusResponse(data.status)) {
+		if (!newsApiAppData.firstPass) {
+			data.sources.forEach(item => {
+				newsApiRetrievedData.sources.push(item);
+			});
+		} else {		
+			data.articles.forEach(item => {
+				newsApiRetrievedData.articles.push(item);
+			});
+			newsApiRetrievedData.numberOfResults = data.totalResults;
+		}
+	} else {
+		newsApiRetrievedData.message = data.message;
+		newsApiRetrievedData.code = data.code;		
+		renderWarningMessageToUser();	
+	}
+}
+
+function deleteStoredDataFromPreviousRetrieval() {
+	newsApiRetrievedData.articles = [];
+	newsApiRetrievedData.numberOfResults = 0;
+}
+
+function validateApiStatusResponse(returnMessage) {
+	return returnMessage === 'ok' ? true : false;
+}
+
+function executeAfterApiDataRetrieval() {
+	if (!newsApiAppData.firstPass) {
+		generateAutoCompleteDropDownList();	
+		updateEndpoint();		
+		newsApiSendData.query.pageSize = 9;	
+		blockTheNewsSourcesListRedownload();	
+	} 
+	else {
+		if (newsApiRetrievedData.articles.length>0) {
+			renderNewNewsArticles();		
+			if (newsApiRetrievedData.numberOfResults>9) {
+				renderPrevNextButtons();
+			}
+		} else {
+			renderWarningMessageToUser();			
+		}
+	}
+}
+
+function blockTheNewsSourcesListRedownload() {
+	newsApiAppData.firstPass = true;											
+}
+
+function removeExistingNewsArticles() {
+	$('.js-news-result').find('div').remove();
+	$('body').find('.js-prev-next').remove();
+}
+
+function generateAutoCompleteDropDownList() {
+	$('#autocomplete').find('option').remove();
+	
+	if (newsApiAppData.searchMechanism === 'source') {
+		newsApiRetrievedData.sources.forEach(item=> {
+			$('#autocomplete').append(`<option value="${item.name}" data-source-id="${item.id}">`);	
+		});
+	} else if (newsApiAppData.searchMechanism === 'country') {
+		newsApiAppData.requestParam.country.forEach(item=> {
+			$('#autocomplete').append(`<option value="${item.name}" data-source-id="${item.id}">`);	
+		});
+	} 
+	else if (newsApiAppData.searchMechanism === 'category') {
+		newsApiAppData.requestParam.category.forEach(item=> {
+			$('#autocomplete').append(`<option value="${item.name}" data-source-id="${item.id}">`);	
+		});
+	} 
+}
+
+function selectNewsGroupListener() {
+	$('body').on('change','.js-news-group', function() {
+		event.preventDefault();
+
+		newsApiAppData.newsGroup = $(this).find(':selected').val();
+		updateEndpoint();
+
+		if (newsApiAppData.newsGroup === 'everything') {
+			deleteSearchByOptions();
+			renderSortByCategory();
+			renderLanguageCategory();			
+		} else {
+			renderSearchByOptions();
+			deleteSortByCategory();
+			deleteLanguageCategory();
+		}
+	});
+}
+
+function renderSearchByOptions() {
+	$('.js-search-mechanism').find('option[value="source"]').after(
+		`<option value="country">Country</option>
+		 <option value="category">Category</option>
+		`);	
+}
+
+function deleteSearchByOptions() {
+	$('.js-search-mechanism').find('option[value="country"]').remove();
+	$('.js-search-mechanism').find('option[value="category"]').remove();
+}
+
+function renderSortByCategory() {
+	$('.js-form-news').find('.js-search-mechanism-label').after(
+		`<label class="sort-news-label js-sort-news-label">
+			<a>Sort By:</a> 
+			<select name="sort"	class="sort-news js-sort-news" required>
+				<option value="publishedAt" selected>Newest First</option>
+				<option value="popularity">Popularity</option>
+				<option value="relevancy">Relevancy</option>				
+			</select> 
+		</label>
+		`);
+
+	animateFadeInSortCategory();
+}
+
+function renderLanguageCategory() {
+	$('.js-form-news').find('.js-sort-news-label').after(
+	`<label class="language-news-label js-language-news-label">
+		<a>Language:</a> 
+		<select name="language"	class="language-news js-language-news" required>		
+		</select> 
+	</label>
+	`);
+
+	newsApiAppData.requestParam.language.forEach(item => {
+		$('.js-language-news').append(`<option value="${item.id}">${item.name}</option>`);
+	});
+
+	$('.js-language-news').find('option[value="en"]').attr('selected',true);
+
+	animateFadeInLanguageCategory();	
+}
+
+function deleteLanguageCategory() {
+	$('.js-language-news-label').fadeOut(120,function() {
+		$(this).remove();		
+	});
+}
+
+function deleteSortByCategory() {
+	$('.js-sort-news-label').fadeOut(120,function() {
+		$(this).remove();		
+	});
+}
+
+function selectSortTypeListener() {
+	$('body').on('change','.js-sort-news', function() {
+		event.preventDefault();
+
+		newsApiAppData.sortType = $(this).find(':selected').val();
+	});
+}
+
+function selectLanguageListener() {
+	$('body').on('change','.js-language-news', function() {
+		event.preventDefault();
+
+		newsApiAppData.language = $(this).find(':selected').val();
+	});
+}
+
+function selectSearchMechanismListener() {
+	$('body').on('change','.js-search-mechanism', function() {
+		event.preventDefault();
+
+		newsApiAppData.searchMechanism = $(this).find(':selected').val();
+		updatePlaceholderAndLabelText();
+		generateAutoCompleteDropDownList();
+	});
+}
+
+function submitNewSearchTerm() {
+	$('body').on('submit','.js-form-news', function(event) {
+		event.preventDefault();
+
+		newsApiAppData.currentSearchTerm = $(this).find('.js-input-search-term').val();
+		newsApiAppData.currentPage = 1;
+		newsApiAppData.nextPageRenderIndex = 1;
+
+		updateApiQuery(newsApiAppData.currentSearchTerm);
+		retrieveDataFromNewsApi();
+	});
+}
+
+function goToPreviousPage() {
+	$('body').on('click','.js-prev-button',function(event) {
+		event.preventDefault();
+
+		if (newsApiAppData.currentPage>1) {
+			newsApiAppData.currentPage--;	
+			newsApiAppData.prevPageRenderFlag = true;	// this flag is used to enable shorter page loading time when user goes to a previous page
+			updateApiQuery(newsApiAppData.currentSearchTerm);
+			retrieveDataFromNewsApi();				
+		}
+	});
+}
+
+function goToNextPage() {
+	$('body').on('click','.js-next-button',function(event) {
+		event.preventDefault();
+	
+		if (newsApiRetrievedData.numberOfResults/9>newsApiAppData.currentPage) {
+			if (newsApiAppData.currentPage < newsApiAppData.nextPageRenderIndex) {
+				newsApiAppData.nextPageRenderFlag = true; // this flag is used to enable shorter page loading time when user goes to a next page which was already loaded
+			}
+			if (newsApiAppData.currentPage === newsApiAppData.nextPageRenderIndex){
+				newsApiAppData.nextPageRenderIndex++;	
+			}
+			newsApiAppData.currentPage++;
+			updateApiQuery(newsApiAppData.currentSearchTerm);
+			retrieveDataFromNewsApi();
+		}
+	});
+}
+
+function updateEndpoint() {
+	newsApiSendData.url.endpoint = `https://newsapi.org/v2/${newsApiAppData.newsGroup}`;
+}
+
+function updateApiQuery() {
+	deleteLastQuery();
+
+	if (newsApiAppData.searchMechanism === 'source') {
+		newsApiSendData.query.sources = newsApiRetrievedData.sources.reduce((accu,item)=> {
+			if (item.name === newsApiAppData.currentSearchTerm) {	
+				accu = item.id;
+			} 
+			return accu;
+		},'');
+
+		if (!newsApiSendData.query.sources) {
+			newsApiSendData.query.sources = newsApiAppData.currentSearchTerm;
+		}
+
+	} else if (newsApiAppData.searchMechanism === 'country') {
+		newsApiSendData.query.country = newsApiAppData.requestParam.country.reduce((accu,item)=> {
+			if (item.name === newsApiAppData.currentSearchTerm) {	
+				accu = item.id;
+			} 
+			return accu;
+		},'');
+
+		if (!newsApiSendData.query.country) {
+			newsApiSendData.query.country = newsApiAppData.currentSearchTerm;
+		}
+
+	} else if (newsApiAppData.searchMechanism === 'category') {
+		newsApiSendData.query.category = newsApiAppData.requestParam.category.reduce((accu,item)=> {
+			if (item.name === newsApiAppData.currentSearchTerm) {	
+				accu = item.id;
+			} 
+			return accu;
+		},'');
+
+		if (!newsApiSendData.query.category) {
+			newsApiSendData.query.category = newsApiAppData.currentSearchTerm;
+		}
+
+	} else {
+		newsApiSendData.query.q = newsApiAppData.currentSearchTerm;
+	}
+
+	if (newsApiAppData.currentPage > 1) {
+		newsApiSendData.query.page = newsApiAppData.currentPage;
+	}
+
+	if (newsApiAppData.newsGroup === 'everything') {
+		newsApiSendData.query.sortBy = newsApiAppData.sortType;
+		newsApiSendData.query.language = newsApiAppData.language;		
+	}
+}
+
+function deleteLastQuery() {
+	delete newsApiSendData.query.sources;
+	delete newsApiSendData.query.country;
+	delete newsApiSendData.query.category;
+	delete newsApiSendData.query.q;		
+	delete newsApiSendData.query.page;
+	delete newsApiSendData.query.sortBy;
+	delete newsApiSendData.query.language;
+}
+
+function updatePlaceholderAndLabelText() {
+	$('.js-input-search-term').val('');
+	
+	let placeholder;
+	let labelText;
+	
+	if (newsApiAppData.searchMechanism === 'source') {
+		placeholder = newsApiAppData.placeholder[0];
+		labelText = newsApiAppData.label[0];		
+	} else if (newsApiAppData.searchMechanism === 'country') {
+		placeholder = newsApiAppData.placeholder[1];
+		labelText = newsApiAppData.label[1];				
+	} else if (newsApiAppData.searchMechanism === 'category') {
+		placeholder = newsApiAppData.placeholder[2];
+		labelText = newsApiAppData.label[2];						
+	} else if (newsApiAppData.searchMechanism === 'q') {
+		placeholder = newsApiAppData.placeholder[3];
+		labelText = newsApiAppData.label[3];				
+	}
+	$('.js-input-search-term').attr('placeholder', placeholder);
+	$('.js-input-label-text').text(labelText);	
+}
+
+function renderNewNewsArticles() {
+	let newsHTML, imgURL, articleURL, title, description, source;
+	
+	removeExistingNewsArticles();
+	
+	adjustUpperLimitsOfCounters();	// If less than 9 articles are returned, the counters have to be adjusted accordingly so that there is no adressing of nonexistent data, which produces an error
+
+	for (let i=0; i<newsApiAppData.counters.outerCountBoundary; i++) {
+		$('.js-news-result').append(`<div class="row outer-container-${i} row-bottom-offset"></div>`);	
+
+		for (let j=i*3; j<i*3+newsApiAppData.counters.innerCountBoundary[i]; j++) {
+
+			imgURL = newsApiRetrievedData.articles[j].urlToImage; 
+			articleURL = newsApiRetrievedData.articles[j].url ? newsApiRetrievedData.articles[j].url : "#";
+			title = newsApiRetrievedData.articles[j].title ? newsApiRetrievedData.articles[j].title : 'The title is not available.';
+			description = newsApiRetrievedData.articles[j].description ? newsApiRetrievedData.articles[j].description : 'The description is not available.';
+			source = newsApiRetrievedData.articles[j].source.name;
+
+			newsHTML = `<div class="inner-container js-inner-container col-4 col-bottom-offset" hidden>
+				<a href="${articleURL}"  target="_blank">
+					<img src=${imgURL} onerror="this.src='https://via.placeholder.com/500x300?text=Image not found'">
+					<div class="article-text">
+						<h3>${title}</h3>
+						<p>${description}</p>
+						<p>Source: ${source}</p>
+					</div>
+				</a>
+			</div>
+			`;
+			$(`.outer-container-${i}`).append(newsHTML);
+		}
+	}
+	animateScrollTop();
+
+	if (newsApiAppData.prevPageRenderFlag || newsApiAppData.nextPageRenderFlag) { // When the user is visiting a page that has already loaded, shorter loading time is enabled
+		setTimeout(animateFadeInMainContent,newsApiAppData.shortLoadTime);
+		newsApiAppData.prevPageRenderFlag = false;
+		newsApiAppData.nextPageRenderFlag = false;							
+	} else { // When new content is retrieved from the API, to create a smooth effect of articles successively fading in on the page, a setTimeout function is used to delay the render. This is neccessary because sometimes the images take up a whole second to load.
+		setTimeout(animateFadeInMainContent,newsApiAppData.longLoadTime);
+	}
+}
+
+function adjustUpperLimitsOfCounters() {
+	newsApiAppData.counters.outerCountBoundary = 0;
+	newsApiAppData.counters.innerCountBoundary = [0,0,0];
+
+	if (newsApiRetrievedData.articles.length<=3 && newsApiRetrievedData.articles.length>0) {
+		newsApiAppData.counters.outerCountBoundary = 1;
+		newsApiAppData.counters.innerCountBoundary[0] = newsApiRetrievedData.articles.length;
+	} else if (newsApiRetrievedData.articles.length<=6 && newsApiRetrievedData.articles.length>3) {
+			newsApiAppData.counters.outerCountBoundary = 2;
+			newsApiAppData.counters.innerCountBoundary[0] = 3;
+			newsApiAppData.counters.innerCountBoundary[1] = newsApiRetrievedData.articles.length - 3;
+	} else {
+			newsApiAppData.counters.outerCountBoundary = 3;		
+			newsApiAppData.counters.innerCountBoundary[0] = 3;
+			newsApiAppData.counters.innerCountBoundary[1] = 3;
+			newsApiAppData.counters.innerCountBoundary[2] = newsApiRetrievedData.articles.length - 6;		
+	}
+}
+
+function renderWarningMessageToUser() {
+	removeExistingNewsArticles();
+
+	if (!newsApiRetrievedData.message) {
+		newsApiRetrievedData.message = 'This search produced no results! Please try again by redefining your search parameters or by reloading the page.';
+	}
+	
+	$('.js-news-result').append(
+		`<div class="row outer-container js-outer-container row-bottom-offset" hidden>
+			<div class="inner-container warning-message col-12 col-bottom-offset">
+				<h3>${newsApiRetrievedData.message}</h3>
+			</div>
+		</div>
+		`);	
+
+	animateFadeInWarning();
+}
+
+function renderPrevNextButtons() {
+	$('main').append(
+		`<section class="js-prev-next" hidden>
+			<button type="button" class="btn prev-button js-prev-button">Prev</button>
+			<button type="button" class="btn next-button js-next-button">Next</button>
+  	</section>`
+		);
+}
+
+function animateScrollTop() { // scroll to the top of the page when going to the previous or next page
+  $('html, body').animate({scrollTop: '0px'}, 100);
+}
+
+function animateFadeInMainContent() { // every 100ms fade in a new article 
+	$('.js-inner-container').each(function(index) {
+		$(this).delay(80*index).fadeIn(140);
+	});
+
+	setTimeout(function() { // the prev/next buttons are faded in after all of the articles have finnished loading
+		$('.js-prev-next').fadeIn(140);
+		$('.js-prev-next').addClass('prev-next').css('display','flex');
+	},80*$('.js-inner-container').length);	
+}
+
+function animateFadeInSortCategory() {
+	$('.js-sort-news-label').fadeIn(120)
+	.css('display','flex');
+}
+
+function animateFadeInLanguageCategory() {
+	$('.js-language-news-label').fadeIn(120)
+	.css('display','flex');
+}
+
+function animateFadeInWarning() { // the warning message is also faded in
+ $('.js-outer-container').fadeIn(120);
 }
 
 $(startApp);
