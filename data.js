@@ -19,6 +19,7 @@ const newsApiSendData = {
 }
 
 const newsApiAppData = {
+  mobileOrTablet: false,
   browserType : {
     isFirefox : false,
     isIE : false
