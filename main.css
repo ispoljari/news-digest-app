@@ -527,9 +527,17 @@ h2 {
   list-style: none;
 }
 
+.home-small,
+.search-small {
+  color: #232323;
+}
+
+.font-page-style {
+  color: tomato;
+}
+
 .menu li a {
   text-decoration: none;
-  color: #232323;
   font-size: 18px;
   letter-spacing: 0.06em;
   -webkit-transition: color 0.1s ease-in;

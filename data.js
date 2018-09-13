@@ -19,7 +19,7 @@ const newsApiSendData = {
 }
 
 const newsApiAppData = {
-  sitePage : 1;
+  sitePage : 1,
 	newsGroup : 'top-headlines',
 	searchMechanism : 'source',
 	sortType : 'publishedAt',
