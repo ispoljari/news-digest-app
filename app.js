@@ -119,7 +119,7 @@ function swipeUpDownListen() { // this function is done with pure JS because jQu
         return;
       }
 
-      let yUp = evt.touches[0].clientY;
+      let yUp = event.touches[0].clientY;
       let yDiff = yDown - yUp;
 
       if (yDiff > 0) {
