@@ -40,7 +40,26 @@ body {
   }
 }
 
-@-webkit-keyframes fade-slide-down {
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-down {
   from {
     opacity: 0;
     -webkit-transform: translateY(-4em);
@@ -53,7 +72,7 @@ body {
   }
 }
 
-@keyframes fade-slide-down {
+@keyframes slide-down {
   from {
     opacity: 0;
     -webkit-transform: translateY(-4em);
@@ -77,10 +96,12 @@ body {
   display: block;
   height: 110vh;
   -webkit-animation: 
-  fade-slide-down 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
+  slide-down 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
+  fade-in 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
   2s 1.5s 1 ease-in backgroundBlurEffect;
           animation: 
-  fade-slide-down 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
+  slide-down 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
+  fade-in 1s 0.2s cubic-bezier(0, 0.5, 0, 1),
   2s 1.5s 1 ease-in backgroundBlurEffect;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
@@ -142,24 +163,6 @@ body {
   }
 }
 
-@-webkit-keyframes heading-visibility {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes heading-visibility {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @-webkit-keyframes blink-caret {
   from, to {
     border-color: transparent;
@@ -203,11 +206,11 @@ h1 {
   -webkit-animation: 
     typing 1s 1.5s steps(40),
     blink-caret 0.0909s 1.5s step-end 11,
-    heading-visibility 0.2s 1.5s 1 ease-in;
+    fade-in 0.2s 1.5s 1 ease-in;
   animation: 
     typing 1s 1.5s steps(40),
     blink-caret 0.0909s 1.5s step-end 11,
-    heading-visibility 0.2s 1.5s 1 ease-in;
+    fade-in 0.2s 1.5s 1 ease-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -227,11 +230,11 @@ h2 {
   -webkit-animation: 
     typing 1s 2.5s steps(40),
     blink-caret 0.0909s 2.5s step-end 11,
-    heading-visibility 0.2s 2.5s 1 ease-in;
+    fade-in 0.2s 2.5s 1 ease-in;
   animation: 
     typing 1s 2.5s steps(40),
     blink-caret 0.0909s 2.5s step-end 11,
-    heading-visibility 0.2s 2.5s 1 ease-in;
+    fade-in 0.2s 2.5s 1 ease-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -249,24 +252,6 @@ h2 {
   display: none;
 }
 
-@-webkit-keyframes navigation-visibility {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes navigation-visibility {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .large-screen-nav {
   list-style: none;
   width: 150px;
@@ -275,8 +260,8 @@ h2 {
 }
 
 .large-screen-nav-animate {
-  -webkit-animation: 1s 3.5s 1 ease-in navigation-visibility;
-          animation: 1s 3.5s 1 ease-in navigation-visibility;
+  -webkit-animation: 1s 3.5s 1 ease-in fade-in;
+          animation: 1s 3.5s 1 ease-in fade-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards; 
 }
@@ -592,11 +577,25 @@ h2 {
   position: fixed;
   bottom: 50px;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  transition: opacity 0.4s ease-in; 
 }
 
 .scroll-down-label p {
-  font-size: calc(12px + (20 - 12) * ((100vw - 320px) / 780));  
+  color: #fbf5ee;
+  font-size: calc(10px + (16 - 10) * ((100vw - 320px) / 780));  
+}
+
+.label-opacity {
+  opacity: 0;
+}
+
+.label-animate {
+  -webkit-animation: 1s 4.2s 1 ease-in fade-in;
+          animation: 1s 4.2s 1 ease-in fade-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; 
 }
 
 /* Classes for transitions between screens */
@@ -615,6 +614,15 @@ h2 {
 .search-form-partial {
   display: none;
   margin-top: 90px;
+
+  /* transition effects when the user scrolls down */
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-in-down-scroll {
+  opacity: 1;
 }
 
 .form-news {
@@ -843,7 +851,7 @@ h2 {
   }
   
   .scroll-down-label p {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
@@ -934,7 +942,7 @@ h2 {
   }
 
   .scroll-down-label p {
-    font-size: 20px;
+    font-size: 16px;
   }
   
   .heading-outer-container {
