@@ -482,12 +482,6 @@ h2 {
           transform: rotate(-135deg);
 }
 
-/* .focused {
-  outline:none; 
-  border:1px solid #4D90FE;
-  box-shadow: 0px 0px 5px  #4D90FE;
-} */
-
 .menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -586,21 +580,51 @@ h2 {
 /* The Scroll  Down Label */
 
 .scroll-down-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  color: #fbf5ee;
   position: fixed;
   bottom: 50px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  -webkit-transition: opacity 0.4s ease-in;
   transition: opacity 0.4s ease-in; 
 }
 
+.scroll-down-label p,
+.fa-angle-double-down {
+  font-size: calc(10px + (16 - 10) * ((100vw - 320px) / 780)) !important; 
+}
+
 .scroll-down-label p {
-  color: #fbf5ee;
-  font-size: calc(10px + (16 - 10) * ((100vw - 320px) / 780));  
+  margin-right: 10px;
 }
 
 .label-opacity {
   opacity: 0;
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: tomato;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@keyframes blink {
+  from, to {
+    color: tomato;
+  }
+  50% {
+    color: white;
+  }
 }
 
 .label-animate {
@@ -608,6 +632,11 @@ h2 {
           animation: 1s 4.2s 1 ease-in fade-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards; 
+}
+
+.angle-animate {
+  -webkit-animation: 1s infinite ease-in-out blink;
+          animation: 1s infinite ease-in-out blink;
 }
 
 /* Classes for transitions between screens */
