@@ -598,7 +598,7 @@ h2 {
 
 .scroll-down-label p,
 .fa-angle-double-down {
-  font-size: calc(10px + (16 - 10) * ((100vw - 320px) / 780)) !important; 
+  font-size: calc(10px + (16 - 10) * ((100vw - 320px) / 780)); 
 }
 
 .scroll-down-label p {
@@ -891,7 +891,8 @@ h2 {
 		font-size: 18px;
   }
   
-  .scroll-down-label p {
+  .scroll-down-label p,
+  .fa-angle-double-down {
     font-size: 10px;
   }
 }
@@ -982,7 +983,8 @@ h2 {
 		font-size: 32px;
   }
 
-  .scroll-down-label p {
+  .scroll-down-label p,
+  .fa-angle-double-down {
     font-size: 16px;
   }
   
