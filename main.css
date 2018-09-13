@@ -408,8 +408,8 @@ h2 {
   height: 18px;
 }
 
-.home:focus > .nav-bullet,
-.search:focus > .nav-bullet {
+.home-large:focus > .nav-bullet,
+.search-large:focus > .nav-bullet {
   background-color: tomato;
   width: 18px;
   height: 18px;
@@ -420,8 +420,8 @@ h2 {
           transform: rotateY(0deg);  
 }
 
-.home:focus > .nav-text,
-.search:focus > .nav-text {
+.home-large:focus > .nav-text,
+.search-large:focus > .nav-text {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);  
 }
@@ -586,6 +586,19 @@ h2 {
 .svg-icon circle {
   stroke: #232323;
   stroke-width: 0.4;
+}
+
+/* The Scroll  Down Label */
+
+.scroll-down-label {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scroll-down-label p {
+  font-size: calc(12px + (20 - 12) * ((100vw - 320px) / 780));  
 }
 
 /* Classes for transitions between screens */
@@ -829,7 +842,11 @@ h2 {
   
   h2 {
 		font-size: 18px;
-	}
+  }
+  
+  .scroll-down-label p {
+    font-size: 12px;
+  }
 }
 
 /* this is to prevent ios Safari from rendering the text larger than it should be */
@@ -916,6 +933,10 @@ h2 {
   
   h2 {
 		font-size: 32px;
+  }
+
+  .scroll-down-label p {
+    font-size: 20px;
   }
   
   .heading-outer-container {
