@@ -150,7 +150,7 @@ function largeNavigationLinksListen() {
       setTimeout(function() {
         fadeInHeading();
         fadeInScrollLabel();
-      }, 350);
+      }, 380);
       $('.js-home-large').blur();
     });
 
@@ -191,7 +191,7 @@ function smallNavigationLinksListen() {
       setTimeout(function() {
         fadeInHeading();
         fadeInScrollLabel();
-      }, 350);
+      }, 380);
       $('.js-home-small').blur();
       closeBurgerIcon();
       closeBurgerIconColor();
@@ -267,14 +267,14 @@ function fadeInSearchForm() {
   $('.js-search-form-partial').css('display','block');
   setTimeout(function() {
     $('.js-search-form-partial').addClass('fade-in-down-scroll');
-  }, 10);
+  }, 30);
 }
 
 function fadeOutSearchForm() {
   $('.js-search-form-partial').removeClass('fade-in-down-scroll');
   setTimeout(function() {
     $('.js-search-form-partial').css('display','none');
-  }, 310);
+  }, 380);
 }
 
 $(startApp);

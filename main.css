@@ -659,8 +659,8 @@ h2 {
 
   /* transition effects when the user scrolls down */
   opacity: 0;
-  -webkit-transition: opacity 0.3s ease-in;
-  transition: opacity 0.3s ease-in;
+  -webkit-transition: opacity 0.35s ease-in;
+  transition: opacity 0.35s ease-in;
 }
 
 .fade-in-down-scroll {
