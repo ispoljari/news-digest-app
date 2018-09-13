@@ -679,11 +679,11 @@ h2 {
 	margin-left: 5px;
 	padding: 2px;
 	min-height: 25px;
-	width: 55%;
+	width: 50%;
 	border: 1px solid #b8c2cc;
   border-radius: 3px;	
   color: #2f2f2f;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 	-webkit-transition: background-color 0.05s ease-in;	
@@ -700,7 +700,7 @@ h2 {
 }
 
 .form-news label {
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -796,7 +796,7 @@ h2 {
 	padding-left: 5px;
 	border: 1px solid #b8c2cc;	
   border-radius: 3px;	
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .sources-submit {
@@ -928,7 +928,7 @@ h2 {
 	}
 
 	.input-label-group {
-		width: 55%;
+		width: 50%;
 	}
 
 	.add-filter-option button {

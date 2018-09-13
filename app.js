@@ -10,6 +10,21 @@ function startApp() {
 	registerEventListenersSelectSubmit();	
 }
 
+function registerEventListenersSelectSubmit() {
+  toggleHamburgerIconListen();
+  scrollUpDownListen();
+  swipeUpDownListen();
+  largeNavigationLinksListen();
+  smallNavigationLinksListen();
+	selectNewsGroupListener();
+	selectSearchMechanismListener();
+	selectSortTypeListener();	
+	selectLanguageListener();
+	submitNewSearchTerm();
+	goToPreviousPage();
+	goToNextPage();
+}
+
 function detectBrowserVendor() {
   // Firefox 1.0+
   newsApiAppData.browserType.isFirefox = typeof InstallTrigger !== 'undefined';
@@ -115,7 +130,7 @@ function scrollUpDownListen() {
         }
       });
     }
-  }, 4000);
+  }, 4500);
 }
 
 function executeOnPageScroll() {
@@ -168,7 +183,7 @@ function swipeUpDownListen() { // this function is done with pure JS because jQu
       }
     }s
 
-  }, 4000);
+  }, 4500);
 }
 
 function largeNavigationLinksListen() {
@@ -198,7 +213,7 @@ function largeNavigationLinksListen() {
       }, 450);
       $('.js-search-large').blur();
     });
-  }, 4000);
+  }, 4500);
 }
 
 function toggleNavLinksColor() {
@@ -243,7 +258,7 @@ function smallNavigationLinksListen() {
       closeBurgerIcon();
       closeBurgerIconColor();
     });
-  }, 4000);
+  }, 4500);
 }
 
 function fadeOutHeading() {
@@ -311,21 +326,6 @@ function fadeOutSearchForm() {
 
 function retrieveDataFromNewsApi() {
 	$.when($.getJSON(newsApiSendData.url.endpoint, newsApiSendData.query, storeRetrievedData).fail(renderWarningMessageToUser)).done(executeAfterApiDataRetrieval);
-}
-
-function registerEventListenersSelectSubmit() {
-  toggleHamburgerIconListen();
-  scrollUpDownListen();
-  swipeUpDownListen();
-  largeNavigationLinksListen();
-  smallNavigationLinksListen();
-	selectNewsGroupListener();
-	selectSearchMechanismListener();
-	selectSortTypeListener();	
-	selectLanguageListener();
-	submitNewSearchTerm();
-	goToPreviousPage();
-	goToNextPage();
 }
 
 function storeRetrievedData(data) {
