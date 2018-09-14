@@ -262,6 +262,8 @@ function smallNavigationLinksListen() {
 }
 
 function fadeOutHeading() {
+  $('.js-h1').css('border-right','0');
+  
   $('.js-headings').addClass('eject-down-scroll fade-out-down-scroll');
 
   setTimeout(function() {
@@ -273,6 +275,9 @@ function fadeOutHeading() {
 
 function fadeOutScrollLabel() {
   $('.js-scroll-down-label').addClass('fade-out-down-scroll');
+  setTimeout(function() {
+    $('.js-scroll-down-label').css('display','none'); 
+  }, 400);
 }
 
 function fadeInHeading() {
@@ -280,13 +285,15 @@ function fadeInHeading() {
 
   setTimeout(function() {
     $('.js-headings').removeClass('fade-out-down-scroll');
-  }, 10);
+  }, 40);
 }
 
 function fadeInScrollLabel() {
+  $('.js-scroll-down-label').css('display','flex');
+
   setTimeout(function() {
     $('.js-scroll-down-label').removeClass('fade-out-down-scroll');
-  },300);
+  }, 300);
 }
 
 function blockInitialAnimations() {
@@ -314,7 +321,7 @@ function fadeInSearchForm() {
   $('.js-search-form-partial').css('display','block');
   setTimeout(function() {
     $('.js-search-form-partial').addClass('fade-in-down-scroll');
-  }, 30);
+  }, 40);
 }
 
 function fadeOutSearchForm() {
