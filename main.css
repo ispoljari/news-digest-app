@@ -191,7 +191,8 @@ body {
 
 h1 {
   font-family: 'Cormorant Garamond', sans-serif;
-  font-size: calc(40px + (100 - 40) * ((100vw - 320px) / 780));
+  font-size: calc(38px + (100 - 38) * ((100vw - 320px) / 780));
+  text-transform: uppercase;
   margin-right: 0px;
   margin-bottom: 0px;
 
@@ -217,7 +218,8 @@ h1 {
 
 h2 {
   font-family: 'Cormorant Garamond', sans-serif;
-  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / 730));
+  font-size: calc(16px + (30 - 16) * ((100vw - 320px) / 730));
+  text-transform: uppercase;
 
   /* Hacks for preventing h2 appearing briefly, before the animation starts */
   -webkit-backface-visibility: hidden;
@@ -352,6 +354,7 @@ h2 {
 .nav-text {
   display: inline-block;
   font-size: 18px;
+  text-transform: uppercase;
   letter-spacing: 0.1em;
   -webkit-transform: rotateY(-90deg);
           transform: rotateY(-90deg);
@@ -524,6 +527,7 @@ h2 {
 .home-small,
 .search-small {
   color: #232323;
+  text-transform: uppercase;
 }
 
 .font-page-style {
@@ -588,6 +592,7 @@ h2 {
       -ms-flex-align: baseline;
           align-items: baseline;
   color: #fbf5ee;
+  text-transform: uppercase;
   position: fixed;
   bottom: 50px;
   left: 50%;
@@ -899,11 +904,11 @@ h2 {
 
 @media screen and (max-width: 320px) {
 	h1 {
-		font-size: 40px;
+		font-size: 38px;
   }
   
   h2 {
-		font-size: 18px;
+		font-size: 16px;
   }
   
   .scroll-down-label p,
@@ -1033,7 +1038,7 @@ h2 {
   }
   
   h2 {
-		font-size: 32px;
+		font-size: 30px;
   }
 
   .scroll-down-label p,

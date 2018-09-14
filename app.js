@@ -181,8 +181,7 @@ function swipeUpDownListen() { // this function is done with pure JS because jQu
           fadeInSearchForm();
         }, 450);
       }
-    }s
-
+    }
   }, 4500);
 }
 
