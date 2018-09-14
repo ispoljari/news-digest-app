@@ -40,7 +40,8 @@ function checkIfMobileOrTablet(userAgent) {
 
 function updateScrollDownLabel() {
   if (newsApiAppData.mobileOrTablet) {
-    $('.js-scroll-down-label').find('p').text('Swipe Down');
+    $('.js-scroll-down-label').find('p').text('Swipe Up');
+    $('.js-arrow').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
   }
 }
 
