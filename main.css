@@ -111,13 +111,34 @@ body {
   opacity: 0; 
 }
 
-/* .paused {
-  -webkit-animation-play-state:paused;
-  -moz-animation-play-state:paused;
-  -o-animation-play-state:paused; 
-  animation-play-state:paused;
-} */
+.header-content:after {
+  content: "";
+  position: fixed;
+  left: -5%;
+  top: -5%;
+  right: 0;
+  z-index: -1;
 
+  display: block;
+  height: 110vh;
+
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0.8))), url(header_background.jpg) no-repeat bottom;
+
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(header_background.jpg) no-repeat bottom;
+  background-size: cover;
+  -webkit-filter: blur(6px);
+          filter: blur(6px);
+  opacity: 0;
+  -webkit-animation: fade-in 1s 3.5s linear;
+          animation: fade-in 1s 3.5s linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.header-content.pause:after {
+  -webkit-animation-play-state: paused; 
+  animation-play-state: paused;
+}
 
 .stretch-height {
   height: inherit;
@@ -593,7 +614,9 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-top: 200px;
   letter-spacing: 0.09em;
   -webkit-box-align: baseline;
@@ -664,7 +687,7 @@ h2 {
 
 .search-form-partial {
   display: none;
-  margin-top: 90px;
+  margin-top: 70px;
 
   /* transition effects when the user scrolls down */
   opacity: 0;
@@ -679,6 +702,14 @@ h2 {
 .form-news {
 	max-width: 600px;
 	margin: 0 auto;
+}
+
+.form-legend {
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / 780)); 
+  letter-spacing: 0.05em;
+  color: blanchedalmond;
 }
 
 .news-group,
@@ -764,11 +795,6 @@ h2 {
 	font-weight: 300;
 }
 
-.add-filter-option button:hover {
-	background-color: blanchedalmond;
-	cursor: pointer;	
-}
-
 .input-label {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -776,7 +802,7 @@ h2 {
 	-webkit-box-align: end;
 	    -ms-flex-align: end;
 	        align-items: flex-end;
-	margin-top: 10px;	
+	margin-top: 20px;	
 }
 
 .input-label-text {
@@ -931,6 +957,10 @@ h2 {
     position: static;
     width: 1.1em;
     height: 1.1em;
+  }
+
+  .input-label {
+    margin-top: 10px;
   }
 
   .input-label-text {

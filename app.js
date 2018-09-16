@@ -2,6 +2,7 @@ function startApp() {
   checkIfMobileOrTablet(window.navigator.userAgent||window.navigator.vendor||window.opera);
   updateScrollDownLabel();
   detectBrowserVendor();
+  pauseBackgroundDarkenAnimation();
   fadeInHamburgerIcon();
   slideDownMenuOnFocus();
   toggleNavHomeColor();
@@ -46,6 +47,16 @@ function updateScrollDownLabel() {
 }
 
 // page load animations
+
+function pauseBackgroundDarkenAnimation() {
+  setTimeout(function() {
+    $('.js-header-content').addClass('pause');
+  }, 3490);
+}
+
+function unPauseBackgroundDarkenAnimation() {
+  $('.js-header-content').removeClass('pause');
+}
 
 function fadeInHamburgerIcon() {
   setTimeout(function() {
@@ -137,6 +148,7 @@ function scrollUpDownListen() {
 function executeOnPageScroll() {
   // SCROLL DOWN
   fadeOutHeading();
+  unPauseBackgroundDarkenAnimation();
   fadeOutScrollLabel();
   if (newsApiAppData.sitePage === 1) {
     toggleNavLinksColor();      
@@ -173,6 +185,7 @@ function swipeUpDownListen() { // this function is done with pure JS because jQu
       if (yDiff > 0) {
         // up swipe
         fadeOutHeading();
+        unPauseBackgroundDarkenAnimation();
         fadeOutScrollLabel();
         if (newsApiAppData.sitePage === 1) {
           toggleNavLinksColor();      
@@ -207,6 +220,7 @@ function largeNavigationLinksListen() {
         newsApiAppData.sitePage++;
       }
       fadeOutHeading();
+      unPauseBackgroundDarkenAnimation();
       fadeOutScrollLabel();
       setTimeout(function() {
         fadeInSearchForm();
@@ -250,6 +264,7 @@ function smallNavigationLinksListen() {
         newsApiAppData.sitePage++;
       }
       fadeOutHeading();
+      unPauseBackgroundDarkenAnimation();
       fadeOutScrollLabel();
       setTimeout(function() {
         fadeInSearchForm();
@@ -263,7 +278,7 @@ function smallNavigationLinksListen() {
 
 function fadeOutHeading() {
   $('.js-h1').css('border-right','0');
-  
+
   $('.js-headings').addClass('eject-down-scroll fade-out-down-scroll');
 
   setTimeout(function() {
