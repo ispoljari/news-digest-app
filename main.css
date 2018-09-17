@@ -121,15 +121,14 @@ body {
   -webkit-filter: blur(6px);
           filter: blur(6px);
   opacity: 0;
-  -webkit-animation: fade-in 1s 3.5s linear;
-          animation: fade-in 1s 3.5s linear;
+  -webkit-animation: fade-in 1s 0.05s linear;
+          animation: fade-in 1s 0.05s linear;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
 .header-content.pause:after {
-  -webkit-animation-play-state: paused; 
-  animation-play-state: paused;
+  -webkit-animation: none !important;
 }
 
 .stretch-height {
@@ -924,6 +923,7 @@ h2 {
 
 .results-partial {
   opacity: 1;
+  -webkit-transition: opacity 0.3s ease-in;
   transition: opacity 0.3s ease-in;
 }
 

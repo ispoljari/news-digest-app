@@ -52,7 +52,7 @@ function updateScrollDownLabel() {
 function pauseBackgroundDarkenAnimation() {
   setTimeout(function() {
     $('.js-header-content').addClass('pause');
-  }, 3490);
+  }, 40);
 }
 
 function unPauseBackgroundDarkenAnimation() {
