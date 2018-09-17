@@ -217,7 +217,7 @@ function largeNavigationLinksListen() {
       setTimeout(function() {
         fadeInHeading();
         fadeInScrollLabel();
-        $('.js-input-search-term').val('');
+        clearTheInputField();
       }, 380);
       $('.js-home-large').blur();
     });
@@ -262,7 +262,7 @@ function smallNavigationLinksListen() {
       setTimeout(function() {
         fadeInHeading();
         fadeInScrollLabel();
-        $('.js-input-search-term').val('');
+        clearTheInputField();
       }, 380);
       $('.js-home-small').blur();
       closeBurgerIcon();
@@ -328,7 +328,7 @@ function fadeOutScrollLabel() {
   $('.js-scroll-down-label').addClass('fade-out-down-scroll');
   setTimeout(function() {
     $('.js-scroll-down-label').css('display','none'); 
-  }, 290);
+  }, 250);
 }
 
 function fadeInHeading() {
@@ -599,7 +599,12 @@ function submitNewSearchTerm() {
 
 		updateApiQuery(newsApiAppData.currentSearchTerm);
 		retrieveDataFromNewsApi();
+		clearTheInputField();
 	});
+}
+
+function clearTheInputField() {
+	$('.js-input-search-term').val('');
 }
 
 function goToPreviousPage() {
@@ -701,7 +706,7 @@ function deleteLastQuery() {
 }
 
 function updatePlaceholderAndLabelText() {
-	$('.js-input-search-term').val('');
+	clearTheInputField();
 	
 	let placeholder;
 	let labelText;
@@ -747,9 +752,9 @@ function renderNewNewsArticles() {
 
 			newsHTML = `<div class="inner-container js-inner-container col-4 col-bottom-offset" hidden>
 				<a href="${articleURL}"  target="_blank">
-					<img src=${imgURL} onerror="this.src='https://via.placeholder.com/500x300?text=Image not found'">
+					<img src=${imgURL} onerror="this.src='https://via.placeholder.com/500x300?text=Image not found'" role="presentation">
 					<div class="article-text">
-						<h3>${title}</h3>
+						<h4>${title}</h4>
 						<p>${description}</p>
 						<p>Source: ${source}</p>
 					</div>
@@ -759,6 +764,8 @@ function renderNewNewsArticles() {
 			$(`.outer-container-${i}`).append(newsHTML);
 		}
 	}
+
+	// Since the alt atribute of img's cannot be dynamically updated (the api doesn't provide that indormation), role="presentation" is used to hide the img from screen readers. The image is not critical for usability anyway. The heading and subtitle will provide enough information for users visual impairments.
 
 	if (newsApiAppData.prevPageRenderFlag || newsApiAppData.nextPageRenderFlag) { // When the user is visiting a page that has already loaded, shorter loading time is enabled
 		setTimeout(animateFadeInMainContent,newsApiAppData.shortLoadTime);

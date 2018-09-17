@@ -614,8 +614,8 @@ h2 {
           align-items: baseline;
   color: #fbf5ee;
   text-transform: uppercase;
-  -webkit-transition: opacity 0.25s ease-in;
-  transition: opacity 0.25s ease-in; 
+  -webkit-transition: opacity 0.15s ease-in;
+  transition: opacity 0.15s ease-in; 
 }
 
 .scroll-down-label p,
@@ -860,12 +860,14 @@ h2 {
 	border-radius: 2px;	
 }
 
-.article-text h3 {
+.article-text h4 {
+  font-size: calc(20px + (28 - 20) * ((100vw - 320px) / 780));
   color: blanchedalmond;
 	margin-bottom: 5px;
 }
 
 .article-text p {
+  font-size: calc(16px + (20 - 16) * ((100vw - 320px) / 780));
   color: white;
 }
 
@@ -951,6 +953,14 @@ h2 {
   .form-legend {
     font-size: 18px;
   }
+
+  .article-text h4 {
+    font-size: 20px;
+  }
+
+  .article-text p {
+    font-size: 16px;
+  }
 }
 
 @media screen and (min-width: 450px) { 
@@ -978,7 +988,15 @@ h2 {
 
 	.add-filter-option button {
 		width: 60%;
-	}
+  }
+  
+  .news-group,
+  .search-mechanism,
+  .sort-news,
+  .language-news,
+  .input-search-term  {
+    letter-spacing: 0.05em;
+  }
 }
 
 /* this is to prevent ios Safari from rendering the text larger than it should be */
@@ -1100,6 +1118,14 @@ h2 {
   .h2-inner-container {
     margin-left: 0.3em;
     position: static;
+  }
+
+  .article-text h4 {
+    font-size: 28px;
+  }
+
+  .article-text p {
+    font-size: 20px;
   }
 }
 

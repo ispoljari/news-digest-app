@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Ivan Spoljaric">
+  <meta name="description" content="With this app the user can search through millions of articles from various news sources and blogs, and filter them by selecting different categories.">
+  <meta name="keywords" content="news, api, news api, news article, news blog, search news, find news, top headlines, headlines, top news">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>News Digest</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
@@ -12,8 +15,8 @@
   <link rel="stylesheet" href="datalist-polyfill/polyfill-style.css">
   <link rel="stylesheet" href="main.css">  
 </head>
-<body>
-  <header>
+<body aria-live="assertive">
+  <header role="banner">
     <div class="row stretch-height header-content js-header-content">
       <div class="col-12 stretch-height heading-outer-container js-headings">
         <div class="h1-inner-container">
@@ -47,7 +50,7 @@
         </li>
       </ul>
 
-    <nav class="navigation">
+    <nav class="navigation" role="navigation">
 
       <!-- Large screen navigation -->
       <ul class="large-screen-nav large-screen-nav-animate js-large-screen-nav">
@@ -67,7 +70,7 @@
 
       <!-- Hamburger icon -->
       <div class="menuToggle js-menuToggle">
-        <a href="#" class="js-small-screen-nav" tabIndex="-1">
+        <a href="#" class="js-small-screen-nav" tabIndex="-1" role="none">
           <span class="defaultBurgerColor"></span>
           <span class="defaultBurgerColor"></span>
           <span class="defaultBurgerColor"></span>
@@ -82,7 +85,7 @@
       </div>
   </header>
 
-  <section class="search-form-partial js-search-form-partial row">
+  <section class="search-form-partial js-search-form-partial row" role="region">
     <div class="col-12">
       <form class="form-news js-form-news" autocomplete="off">
         <h3 class="form-legend">Find news articles or blogs!</h3>
@@ -116,7 +119,7 @@
     </div>
   </section>
 
-  <main class="results-partial js-results-partial">
+  <main class="results-partial js-results-partial" role="main">
     <div class="news-result js-news-result">
     </div>
   </main>
