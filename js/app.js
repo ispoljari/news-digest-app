@@ -32,7 +32,7 @@ function detectBrowserVendor() {
   newsApiAppData.browserType.isFirefox = typeof InstallTrigger !== 'undefined';
 
   // Internet Explorer 6-11
-  newsApiAppData.browserType.isIE = /*@cc_on!@*/false || !!document.documentMode;
+	newsApiAppData.browserType.isIE = /*@cc_on!@*/false || !!document.documentMode;
 }
 
 // check if the user agent is mobile or tablet
@@ -469,7 +469,15 @@ function generateAutoCompleteDropDownList() {
 		newsApiAppData.requestParam.category.forEach(item=> {
 			$('#autocomplete').append(`<option value="${item.name}" data-source-id="${item.id}">`);	
 		});
-	} 
+  } 
+	
+	includeDataListFunctionalityPolyfill();
+}
+
+function includeDataListFunctionalityPolyfill() {
+	$('body').find('script[src="datalist-polyfill/datalist.polyfill.min.js"]').remove();
+	
+	$('<script src="datalist-polyfill/datalist.polyfill.min.js"></script>').appendTo(document.body);
 }
 
 function selectNewsGroupListener() {

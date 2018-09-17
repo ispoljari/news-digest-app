@@ -22,7 +22,7 @@ const newsApiAppData = {
   mobileOrTablet: false,
   browserType : {
     isFirefox : false,
-    isIE : false
+		isIE : false
   },
   sitePage : 1,
   scrollFlag : true,

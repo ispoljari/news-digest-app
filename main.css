@@ -97,8 +97,8 @@ body {
   2s 1.5s 1 ease-in backgroundBlurEffect;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.7))), url(header_background.jpg) no-repeat bottom;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7)), url(header_background.jpg) no-repeat bottom;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.7))), url(img/header_background.jpg) no-repeat bottom;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7)), url(img/header_background.jpg) no-repeat bottom;
   background-size: cover;
   opacity: 0; 
 }
@@ -114,9 +114,9 @@ body {
   display: block;
   height: 110vh;
 
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,0.7)), to(rgba(0,0,0,0.7))), url(header_background.jpg) no-repeat bottom;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,0.7)), to(rgba(0,0,0,0.7))), url(img/header_background.jpg) no-repeat bottom;
 
-  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(header_background.jpg) no-repeat bottom;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(img/header_background.jpg) no-repeat bottom;
   background-size: cover;
   -webkit-filter: blur(6px);
           filter: blur(6px);
@@ -697,7 +697,7 @@ h2 {
 .form-legend {
   margin-bottom: 15px;
   text-transform: capitalize;
-  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / 780)); 
+  font-size: calc(18px + (36 - 18) * ((100vw - 320px) / 330)); 
   letter-spacing: 0.05em;
   color: blanchedalmond;
 }
@@ -947,6 +947,10 @@ h2 {
   .fa-angle-double-up {
     font-size: 12px;
   }
+
+  .form-legend {
+    font-size: 18px;
+  }
 }
 
 @media screen and (min-width: 450px) { 
@@ -988,6 +992,10 @@ h2 {
 @media screen and (min-width: 650px) { 
   .menu li a {
     font-size: 22px;
+  }
+
+  .form-legend {
+    font-size: 36px;
   }
 
   .svg-icon {
