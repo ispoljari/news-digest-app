@@ -25,7 +25,8 @@ const newsApiAppData = {
 		isIE : false
   },
   sitePage : 1,
-  scrollFlag : true,
+	scrollFlag : true,
+	menuDropDelayTime : 0,
 	newsGroup : 'top-headlines',
 	searchMechanism : 'source',
 	sortType : 'publishedAt',
