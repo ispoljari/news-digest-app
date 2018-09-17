@@ -158,6 +158,7 @@ function executeOnPageScroll() {
   }
   setTimeout(function() {
     fadeInSearchForm();
+    fadeInResultsPartial();
   }, 450);
 }
 
@@ -195,6 +196,7 @@ function swipeUpDownListen() { // this function is done with pure JS because jQu
         }
         setTimeout(function() {
           fadeInSearchForm();
+          fadeInResultsPartial();
         }, 450);
       }
     }
@@ -209,9 +211,11 @@ function largeNavigationLinksListen() {
         newsApiAppData.sitePage--;
       }
       fadeOutSearchForm();
+      fadeOutResultsPartial();
       setTimeout(function() {
         fadeInHeading();
         fadeInScrollLabel();
+        $('.js-input-search-term').val('');
       }, 380);
       $('.js-home-large').blur();
     });
@@ -226,6 +230,7 @@ function largeNavigationLinksListen() {
       fadeOutScrollLabel();
       setTimeout(function() {
         fadeInSearchForm();
+        fadeInResultsPartial();
       }, 450);
       $('.js-search-large').blur();
     });
@@ -251,9 +256,11 @@ function smallNavigationLinksListen() {
         newsApiAppData.sitePage--;
       }
       fadeOutSearchForm();
+      fadeOutResultsPartial();
       setTimeout(function() {
         fadeInHeading();
         fadeInScrollLabel();
+        $('.js-input-search-term').val('');
       }, 380);
       $('.js-home-small').blur();
       closeBurgerIcon();
@@ -270,6 +277,7 @@ function smallNavigationLinksListen() {
       fadeOutScrollLabel();
       setTimeout(function() {
         fadeInSearchForm();
+        fadeInResultsPartial();
       }, 450);
       $('.js-search-small').blur();
       closeBurgerIcon();
@@ -282,8 +290,11 @@ function scrollPositionListen() {
   $(window).scroll(function() {
     if($(window).scrollTop() > 50) {
       if (newsApiAppData.scrollFlag === false) {
-        $('.js-menuToggle').css('opacity','0.5');
+        $('.js-menuToggle').css('opacity','0.4');
         newsApiAppData.scrollFlag = true;
+        slideUpTheMenuStrip();
+        closeBurgerIcon();
+        closeBurgerIconColor();
       }
     } else {
       if (newsApiAppData.scrollFlag === true) {
@@ -364,6 +375,21 @@ function fadeOutSearchForm() {
   }, 380);
 }
 
+function fadeOutResultsPartial() {
+  $('.js-results-partial').addClass('fade-out-results-partial');
+  setTimeout(function() {
+    removeExistingNewsArticles();
+    $('.js-results-partial').css('display','none');
+  }, 340);
+}
+
+function fadeInResultsPartial() {
+  $('.js-results-partial').css('display','block');
+  setTimeout(function() {
+    $('.js-results-partial').removeClass('fade-out-results-partial');
+  }, 40);
+}
+
 // Retrieve and store data from the News API. Render the results on screen. Navigate through the results.
 
 function retrieveDataFromNewsApi() {
@@ -423,8 +449,8 @@ function blockTheNewsSourcesListRedownload() {
 }
 
 function removeExistingNewsArticles() {
-	$('.js-news-result').find('div').remove();
-	$('body').find('.js-prev-next').remove();
+    $('.js-news-result').find('div').remove();
+    $('body').find('.js-prev-next').remove();
 }
 
 function generateAutoCompleteDropDownList() {
@@ -684,8 +710,12 @@ function updatePlaceholderAndLabelText() {
 
 function renderNewNewsArticles() {
 	let newsHTML, imgURL, articleURL, title, description, source;
-	
-	removeExistingNewsArticles();
+  
+  removeExistingNewsArticles();
+  
+  setTimeout(function() {
+    animateScrollTop();  
+  }, 100);
 	
 	adjustUpperLimitsOfCounters();	// If less than 9 articles are returned, the counters have to be adjusted accordingly so that there is no adressing of nonexistent data, which produces an error
 
@@ -714,7 +744,6 @@ function renderNewNewsArticles() {
 			$(`.outer-container-${i}`).append(newsHTML);
 		}
 	}
-	animateScrollTop();
 
 	if (newsApiAppData.prevPageRenderFlag || newsApiAppData.nextPageRenderFlag) { // When the user is visiting a page that has already loaded, shorter loading time is enabled
 		setTimeout(animateFadeInMainContent,newsApiAppData.shortLoadTime);
@@ -772,7 +801,7 @@ function renderPrevNextButtons() {
 }
 
 function animateScrollTop() { // scroll to the top of the page when going to the previous or next page
-  $('html, body').animate({scrollTop: '0px'}, 100);
+  $('html, body').animate({scrollTop: '0px'}, 300);
 }
 
 function animateFadeInMainContent() { // every 100ms fade in a new article 
