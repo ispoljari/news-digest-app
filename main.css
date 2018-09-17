@@ -1,14 +1,10 @@
-html {
-  overflow: hidden;
-  height: 100%;
-}
-
 body {
   padding: 10px;
   font: 400 100%/1.4 'Raleway', sans-serif;
   color: #F8F8FF;
   height: 100%;
   overflow: auto;
+  background-color: #2d2d2d;
 }
 
 /* Background img layout, style and animation */
@@ -565,8 +561,7 @@ h2 {
   transition: color 0.1s ease-in;
 }
 
-.menu li a:hover,
-.menu li a:focus {
+.menu li a:hover {
   color: tomato;
 }
 
@@ -631,7 +626,7 @@ h2 {
 }
 
 .scroll-down-label p {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .label-opacity {

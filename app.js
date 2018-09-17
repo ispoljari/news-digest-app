@@ -17,6 +17,7 @@ function registerEventListenersSelectSubmit() {
   swipeUpDownListen();
   largeNavigationLinksListen();
   smallNavigationLinksListen();
+  scrollPositionListen();
 	selectNewsGroupListener();
 	selectSearchMechanismListener();
 	selectSortTypeListener();	
@@ -85,6 +86,7 @@ function toggleHamburgerIconListen() {
     animateBurgerIcon();
     changeBurgerIconColor();
     toggleTheMenuStrip();
+    animateScrollTop();
   });
 }
 
@@ -276,6 +278,22 @@ function smallNavigationLinksListen() {
   }, 4500);
 }
 
+function scrollPositionListen() {
+  $(window).scroll(function() {
+    if($(window).scrollTop() > 50) {
+      if (newsApiAppData.scrollFlag === false) {
+        $('.js-menuToggle').css('opacity','0.5');
+        newsApiAppData.scrollFlag = true;
+      }
+    } else {
+      if (newsApiAppData.scrollFlag === true) {
+        $('.js-menuToggle').css('opacity','1');   
+        newsApiAppData.scrollFlag = false;
+      }
+    }
+  });
+}
+
 function fadeOutHeading() {
   $('.js-h1').css('border-right','0');
 
@@ -345,6 +363,8 @@ function fadeOutSearchForm() {
     $('.js-search-form-partial').css('display','none');
   }, 380);
 }
+
+// Retrieve and store data from the News API. Render the results on screen. Navigate through the results.
 
 function retrieveDataFromNewsApi() {
 	$.when($.getJSON(newsApiSendData.url.endpoint, newsApiSendData.query, storeRetrievedData).fail(renderWarningMessageToUser)).done(executeAfterApiDataRetrieval);
