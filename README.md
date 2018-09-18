@@ -6,6 +6,8 @@
 ## SUMMARY:
 With this app the user can search through millions of articles from various news sources and blogs, and filter them by selecting different categories. 
 
+## DESCRIPTION:
+
 The articles are presented with an image, a title, a subtitle and the name of the news source it originates from.
 
 The user can then click on the article and will be redirected to the coresponding web page that contains the full article.
